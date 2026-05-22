@@ -1,6 +1,6 @@
 {
   "framework": "nextjs",
-  "buildCommand": "yarn prisma generate && cd apps/web && npx next build",
-  "installCommand": "yarn install",
+  "buildCommand": "cd ../.. && yarn prisma generate && cd apps/web && npx next build",
+  "installCommand": "yarn install --mode=skip-build",
   "outputDirectory": "apps/web/.next"
 }
