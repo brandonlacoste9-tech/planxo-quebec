@@ -120,7 +120,7 @@ const getTabs = (
         },
         {
           name: "api_docs",
-          href: "/docs",
+          href: "/apps/categories/automation",
           trackingMetadata: { section: "developer", page: "api_docs" },
         },
         // TODO: Add profile level for embeds
@@ -373,7 +373,7 @@ const useTabs = ({
       if (isAdmin) return true;
       return !adminRequiredKeys.includes(tab.name);
     });
-  }, [isAdmin, orgBranding, user, isDelegationCredentialEnabled, isPbacEnabled, permissions]);
+  }, [isAdmin, user, isDelegationCredentialEnabled, isPbacEnabled, permissions]);
 
   return processTabsMemod;
 };
@@ -534,11 +534,11 @@ function SettingsLayoutAppDirClient({ children, teamFeatures, permissions, ...re
     return () => {
       window.removeEventListener("resize", closeSideContainer);
     };
-  }, [setSideContainerOpen]);
+  }, []);
 
   useEffect(() => {
     setSideContainerOpen((prev) => (prev ? false : prev));
-  }, [setSideContainerOpen]);
+  }, []);
 
   return (
     <Shell
