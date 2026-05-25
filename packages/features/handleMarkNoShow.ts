@@ -2,9 +2,9 @@ import { AttendeeRepository } from "@calcom/features/bookings/repositories/Atten
 import { BookingRepository } from "@calcom/features/bookings/repositories/BookingRepository";
 import { BookingAccessService } from "@calcom/features/bookings/services/BookingAccessService";
 import { WebhookService } from "@calcom/features/webhooks/lib/WebhookService";
+import { getTranslation } from "@calcom/i18n/server";
 import { HttpError } from "@calcom/lib/http-error";
 import logger from "@calcom/lib/logger";
-import { getTranslation } from "@calcom/i18n/server";
 import { getTimeFormatStringFromUserTimeFormat } from "@calcom/lib/timeFormat";
 import { prisma } from "@calcom/prisma";
 import { WebhookTriggerEvents } from "@calcom/prisma/enums";
@@ -221,7 +221,6 @@ const handleMarkNoShow = async ({
       responsePayload.setNoShowHost(noShowHost);
       responsePayload.setMessage(t("booking_no_show_updated"));
     }
-
 
     return responsePayload.getPayload();
   } catch (error) {

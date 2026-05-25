@@ -2,7 +2,6 @@ import { updateTriggerForExistingBookings } from "@calcom/features/webhooks/lib/
 import { prisma } from "@calcom/prisma";
 import type { Prisma } from "@calcom/prisma/client";
 import type { TrpcSessionUser } from "@calcom/trpc/server/types";
-
 import type { TDeleteInputSchema } from "./delete.schema";
 
 type DeleteOptions = {

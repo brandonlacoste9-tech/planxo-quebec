@@ -1,7 +1,6 @@
-import type { Page, Frame } from "@playwright/test";
-import { expect } from "@playwright/test";
-
 import prisma from "@calcom/prisma";
+import type { Frame, Page } from "@playwright/test";
+import { expect } from "@playwright/test";
 
 // Routing forms feature removed - getQueuedFormResponse, getAllFormResponses, getLatestQueuedFormResponse no longer needed
 
@@ -47,7 +46,7 @@ export const getEmbedIframe = async ({
     () => {
       const iframe = document.querySelector<HTMLIFrameElement>(".cal-embed");
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
+      // @ts-expect-error
       return iframe && iframe.contentWindow && window.iframeReady;
     },
     { polling: 500 }
@@ -56,8 +55,8 @@ export const getEmbedIframe = async ({
   const iframeSelector = `iframe[name="cal-embed=${calNamespace}"]`;
   // In case of modal we don't cleanup previous iframe on repeat click, so we should read the last one by default as that would be the one actie
   const targetIframeElement = page.locator(iframeSelector).last();
-  let elementHandle = await targetIframeElement.elementHandle();
-  let embedIframe = await elementHandle?.contentFrame();
+  const elementHandle = await targetIframeElement.elementHandle();
+  const embedIframe = await elementHandle?.contentFrame();
 
   if (!embedIframe) {
     return null;

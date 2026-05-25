@@ -1,10 +1,8 @@
+import dayjs from "@calcom/dayjs";
+import { prisma } from "@calcom/prisma";
 import type { Page } from "@playwright/test";
 import { expect } from "@playwright/test";
 import { v4 as uuidv4 } from "uuid";
-
-import dayjs from "@calcom/dayjs";
-import { prisma } from "@calcom/prisma";
-
 import { addFilter } from "./filter-helpers";
 import { test } from "./lib/fixtures";
 import { submitAndWaitForResponse } from "./lib/testUtils";
@@ -191,7 +189,6 @@ test.describe("Out of office", () => {
       await expect(page.locator('[data-testid="date-range-options-y"]')).toBeVisible(); //Year to Date
       await expect(page.locator('[data-testid="date-range-options-c"]')).toBeVisible(); //Custom
     });
-
   });
 });
 

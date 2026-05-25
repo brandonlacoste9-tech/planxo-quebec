@@ -1,9 +1,7 @@
-import { expect } from "@playwright/test";
 import path from "node:path";
-
 import { CAL_URL } from "@calcom/lib/constants";
 import { prisma } from "@calcom/prisma";
-
+import { expect } from "@playwright/test";
 import { test } from "../lib/fixtures";
 
 test.describe("User Avatar", async () => {
@@ -22,9 +20,7 @@ test.describe("User Avatar", async () => {
         // It is important to call waitForEvent before click to set up waiting.
         page.waitForEvent("filechooser"),
         // Opens the file chooser.
-        page
-          .getByTestId("open-upload-image-filechooser")
-          .click(),
+        page.getByTestId("open-upload-image-filechooser").click(),
       ]);
 
       await fileChooser.setFiles(`${path.dirname(__filename)}/../fixtures/cal.png`);
@@ -48,7 +44,7 @@ test.describe("User Avatar", async () => {
 
       const avatarImage = page.getByTestId("profile-upload-avatar").locator("img");
 
-      await expect(avatarImage).toHaveAttribute("src", new RegExp(`^\/api\/avatar\/${objectKey}\.png$`));
+      await expect(avatarImage).toHaveAttribute("src", new RegExp(`^/api/avatar/${objectKey}.png$`));
 
       const urlResponse = await page.request.get((await avatarImage.getAttribute("src")) || "", {
         maxRedirects: 0,
@@ -60,10 +56,7 @@ test.describe("User Avatar", async () => {
     await test.step("View avatar on the public page", async () => {
       await page.goto(`/${user.username}`);
 
-      await expect(page.locator(`img`)).toHaveAttribute(
-        "src",
-        new RegExp(`\/api\/avatar\/${objectKey}\.png$`)
-      );
+      await expect(page.locator(`img`)).toHaveAttribute("src", new RegExp(`/api/avatar/${objectKey}.png$`));
       // verify objectKey is passed to the OG image
       // yes, OG image URI encodes at multiple places.. don't want to mess with that.
       const ogImageLocator = page.locator('meta[property="og:image"]');

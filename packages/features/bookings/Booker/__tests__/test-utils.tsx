@@ -106,5 +106,4 @@ export const renderWithBookerStore = (
 };
 
 export * from "@testing-library/react";
-
 export { renderWithBookerStore as render };

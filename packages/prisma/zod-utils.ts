@@ -286,14 +286,9 @@ export const stringOrNumber = z.union([
 
 export const requiredCustomInputSchema = z.union([
   // string must be given & nonempty
-  z
-    .string()
-    .trim()
-    .min(1),
+  z.string().trim().min(1),
   // boolean must be true if set.
-  z
-    .boolean()
-    .refine((v) => v === true),
+  z.boolean().refine((v) => v === true),
 ]);
 
 const PlatformClientParamsSchema = z.object({

@@ -1,8 +1,9 @@
 import type {
-  CancelRegularBookingData,
   CancelBookingMeta,
+  CancelRegularBookingData,
   HandleCancelBookingResponse,
 } from "../dto/BookingCancel";
+
 type ValidActionSource = string;
 
 export interface IBookingCancelService {

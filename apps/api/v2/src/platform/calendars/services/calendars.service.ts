@@ -16,8 +16,6 @@ import {
 } from "@nestjs/common";
 import { DateTime } from "luxon";
 import { z } from "zod";
-import { CalendarsRepository } from "@/platform/calendars/calendars.repository";
-import { CalendarsCacheService } from "@/platform/calendars/services/calendars-cache.service";
 import { AppsRepository } from "@/modules/apps/apps.repository";
 import {
   CredentialsRepository,
@@ -26,6 +24,8 @@ import {
 import { PrismaWriteService } from "@/modules/prisma/prisma-write.service";
 import { SelectedCalendarsRepository } from "@/modules/selected-calendars/selected-calendars.repository";
 import { UsersRepository } from "@/modules/users/users.repository";
+import { CalendarsRepository } from "@/platform/calendars/calendars.repository";
+import { CalendarsCacheService } from "@/platform/calendars/services/calendars-cache.service";
 
 @Injectable()
 export class CalendarsService {

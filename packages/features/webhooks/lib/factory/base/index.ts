@@ -11,8 +11,9 @@
  * 3. Implement the abstract build() method with version-specific payload logic
  * 4. Register the new version in registry.ts
  */
+
+export type { BookingExtraDataMap, BookingPayloadParams } from "./BaseBookingPayloadBuilder";
 export { BaseBookingPayloadBuilder } from "./BaseBookingPayloadBuilder";
 export { BaseMeetingPayloadBuilder } from "./BaseMeetingPayloadBuilder";
-export { BaseRecordingPayloadBuilder } from "./BaseRecordingPayloadBuilder";
 export { BaseOOOPayloadBuilder } from "./BaseOOOPayloadBuilder";
-export type { BookingExtraDataMap, BookingPayloadParams } from "./BaseBookingPayloadBuilder";
+export { BaseRecordingPayloadBuilder } from "./BaseRecordingPayloadBuilder";

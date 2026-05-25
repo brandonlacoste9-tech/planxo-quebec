@@ -2,7 +2,6 @@ import { checkSMSRateLimit } from "@calcom/lib/smsLockState";
 import type { CalendarEvent, Person } from "@calcom/types/Calendar";
 import type { TFunction } from "i18next";
 import { beforeEach, describe, expect, test, vi } from "vitest";
-
 import SMSManager from "../sms-manager";
 
 vi.mock("@calcom/lib/smsLockState");
@@ -160,11 +159,7 @@ describe("SMSManager", () => {
   describe("getFormattedTime and getFormattedDate", () => {
     test("should format time correctly", () => {
       const smsManager = new TestSMSManager(mockCalEvent);
-      const formattedTime = smsManager.getFormattedTime(
-        "America/New_York",
-        "en",
-        "2024-03-20T10:00:00Z"
-      );
+      const formattedTime = smsManager.getFormattedTime("America/New_York", "en", "2024-03-20T10:00:00Z");
 
       expect(formattedTime).toContain("2024");
       expect(formattedTime).toContain("6:00am");

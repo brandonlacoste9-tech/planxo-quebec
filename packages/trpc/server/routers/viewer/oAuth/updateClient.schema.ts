@@ -1,8 +1,8 @@
+import { OAuthClientStatus } from "@calcom/prisma/enums";
 import { z } from "zod";
 
-import { OAuthClientStatus } from "@calcom/prisma/enums";
-
-export const ZUpdateClientInputSchema = z.object({
+export const ZUpdateClientInputSchema = z
+  .object({
     clientId: z.string(),
     status: z.nativeEnum(OAuthClientStatus).optional(),
     rejectionReason: z.string().min(1).optional(),
@@ -17,7 +17,8 @@ export const ZUpdateClientInputSchema = z.object({
       (value) => (typeof value === "string" && value.trim() === "" ? null : value),
       z.string().url().nullable().optional()
     ),
-}).superRefine((val, ctx) => {
+  })
+  .superRefine((val, ctx) => {
     if (val.status === OAuthClientStatus.REJECTED && !val.rejectionReason) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,

@@ -3,12 +3,7 @@ import { NoSlotsNotificationService } from "@calcom/features/slots/handleNotific
 import { AvailableSlotsService } from "@calcom/trpc/server/routers/viewer/slots/util";
 
 export type { GetScheduleOptions } from "@calcom/trpc/server/routers/viewer/slots/types";
-
-export { AvailableSlotsService };
-
-export { BusyTimesService };
-
-export { NoSlotsNotificationService };
+export { AvailableSlotsService, BusyTimesService, NoSlotsNotificationService };
 
 // Round-robin slot validation removed (EE feature) — stub for API v2
 export async function validateRoundRobinSlotAvailability(

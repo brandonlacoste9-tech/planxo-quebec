@@ -54,7 +54,7 @@ const StripeAppCard = ({ eventType }: { eventType: EventTypeSetupProps["eventTyp
 
   if (isLoading || !stripeData) return null;
 
-  if (!!transformedAppData.teams && transformedAppData.teams.length > 0) {
+  if (transformedAppData.teams && transformedAppData.teams.length > 0) {
     const eventTypeAssociatedTeam = transformedAppData.teams.find((team) => team.teamId === eventType.teamId);
 
     if (!eventTypeAssociatedTeam) return null;

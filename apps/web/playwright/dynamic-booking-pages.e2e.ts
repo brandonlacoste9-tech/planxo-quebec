@@ -1,13 +1,12 @@
 import { expect } from "@playwright/test";
-
 import { test } from "./lib/fixtures";
 import {
   bookTimeSlot,
-  confirmReschedule,
+  cancelBookingFromBookingsList,
   confirmBooking,
+  confirmReschedule,
   selectFirstAvailableTimeSlotNextMonth,
   selectSecondAvailableTimeSlotNextMonth,
-  cancelBookingFromBookingsList,
 } from "./lib/testUtils";
 
 test.afterEach(({ users }) => users.deleteAll());

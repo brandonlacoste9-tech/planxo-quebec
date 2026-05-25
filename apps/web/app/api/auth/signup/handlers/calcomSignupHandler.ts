@@ -45,9 +45,7 @@ const billingService = {
   async createCustomer(_args: Record<string, unknown>): Promise<{ stripeCustomerId: string }> {
     return { stripeCustomerId: "" };
   },
-  async createSubscriptionCheckout(
-    _args: Record<string, unknown>
-  ): Promise<{ sessionId: string }> {
+  async createSubscriptionCheckout(_args: Record<string, unknown>): Promise<{ sessionId: string }> {
     return { sessionId: "" };
   },
 };

@@ -1,7 +1,5 @@
-import { CalendarsRepository } from "@/platform/calendars/calendars.repository";
-import { CalendarsCacheService } from "@/platform/calendars/services/calendars-cache.service";
-import { CalendarsService } from "@/platform/calendars/services/calendars.service";
-import { GcalController } from "@/platform/gcal/gcal.controller";
+import { Module } from "@nestjs/common";
+import { ConfigService } from "@nestjs/config";
 import { AppsRepository } from "@/modules/apps/apps.repository";
 import { GCalService } from "@/modules/apps/services/gcal.service";
 import { CredentialsRepository } from "@/modules/credentials/credentials.repository";
@@ -11,8 +9,10 @@ import { RedisModule } from "@/modules/redis/redis.module";
 import { SelectedCalendarsRepository } from "@/modules/selected-calendars/selected-calendars.repository";
 import { TokensModule } from "@/modules/tokens/tokens.module";
 import { UsersRepository } from "@/modules/users/users.repository";
-import { Module } from "@nestjs/common";
-import { ConfigService } from "@nestjs/config";
+import { CalendarsRepository } from "@/platform/calendars/calendars.repository";
+import { CalendarsService } from "@/platform/calendars/services/calendars.service";
+import { CalendarsCacheService } from "@/platform/calendars/services/calendars-cache.service";
+import { GcalController } from "@/platform/gcal/gcal.controller";
 
 @Module({
   imports: [PrismaModule, TokensModule, OAuthClientModule, RedisModule],

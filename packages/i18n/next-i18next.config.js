@@ -1,11 +1,12 @@
-const path = require("node:path");
-const i18n = require("../../i18n.json");
-
-/** @type {import("next-i18next").UserConfig} */
 const config = {
   i18n: {
     defaultLocale: "fr",
-    locales: i18n.locale.targets.concat(["fr"]),
+    locales: [
+      "ar", "az", "bg", "bn", "ca", "cs", "da", "de", "el", "en", "es", "es-419", 
+      "eu", "et", "fi", "fr-CA", "he", "hu", "it", "ja", "km", "ko", "nl", "no", 
+      "pl", "pt-BR", "pt", "ro", "ru", "sk-SK", "sr", "sv", "tr", "uk", "vi", 
+      "zh-CN", "zh-TW", "fr"
+    ],
   },
   fallbackLng: {
     default: ["fr", "en"],
@@ -13,7 +14,7 @@ const config = {
     zh: ["zh-CN"],
   },
   reloadOnPrerender: process.env.NODE_ENV !== "production",
-  localePath: path.resolve(__dirname, "./locales"),
+  localePath: "./locales",
 };
 
-module.exports = config;
+export default config;

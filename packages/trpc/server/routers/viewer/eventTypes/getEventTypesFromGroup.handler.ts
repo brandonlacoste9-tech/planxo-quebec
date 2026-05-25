@@ -124,7 +124,7 @@ export const getEventTypesFromGroup = async ({
         limit,
         cursor,
         where: {
-          ...(isFilterSet && !!filters?.schedulingTypes
+          ...(isFilterSet && filters?.schedulingTypes
             ? {
                 schedulingType: { in: filters.schedulingTypes },
               }

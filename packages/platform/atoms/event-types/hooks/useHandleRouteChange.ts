@@ -1,10 +1,7 @@
 // eslint-disable-next-line @calcom/eslint/deprecated-imports-next-router
-import { useEffect } from "react";
 
-import type {
-  EventTypeAssignedUsers,
-  EventTypeHosts,
-} from "@calcom/features/eventtypes/lib/types";
+import type { EventTypeAssignedUsers, EventTypeHosts } from "@calcom/features/eventtypes/lib/types";
+import { useEffect } from "react";
 
 function checkForEmptyAssignment({
   assignedUsers,
@@ -55,7 +52,7 @@ export const useHandleRouteChange = ({
       if (isTeamEventTypeDeleted) return;
 
       if (
-        !!isTeamEventType &&
+        isTeamEventType &&
         !isleavingWithoutAssigningHosts &&
         (url === "/event-types" || paths[1] !== "event-types") &&
         checkForEmptyAssignment({

@@ -1,10 +1,8 @@
 "use client";
 
-import Head from "next/head";
-
 import { markdownToSafeHTML } from "@calcom/lib/markdownToSafeHTML";
-
 import PageWrapper from "@components/PageWrapper";
+import Head from "next/head";
 
 export default function Router({
   message,

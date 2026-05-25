@@ -220,7 +220,7 @@ const createNewSeat = async (
 
   const foundBooking = await findBookingQuery(seatedBooking.id);
 
-  if (!Number.isNaN(paymentAppData.price) && paymentAppData.price > 0 && !!seatedBooking) {
+  if (!Number.isNaN(paymentAppData.price) && paymentAppData.price > 0 && seatedBooking) {
     const credentialPaymentAppCategories = await prisma.credential.findMany({
       where: {
         ...(paymentAppData.credentialId ? { id: paymentAppData.credentialId } : { userId: organizerUser.id }),

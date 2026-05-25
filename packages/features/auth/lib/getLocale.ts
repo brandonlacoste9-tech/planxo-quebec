@@ -1,9 +1,8 @@
+import { i18n } from "@calcom/i18n/next-i18next.config";
 import { parse } from "accept-language-parser";
 import { lookup } from "bcp-47-match";
 import type { GetTokenParams } from "next-auth/jwt";
 import { getToken } from "next-auth/jwt";
-
-import { i18n } from "@calcom/i18n/next-i18next.config";
 
 type ReadonlyHeaders = Awaited<ReturnType<typeof import("next/headers").headers>>;
 type ReadonlyRequestCookies = Awaited<ReturnType<typeof import("next/headers").cookies>>;
@@ -37,21 +36,39 @@ export const getLocale = async (
     return tokenLocale;
   }
 
+  const getHeader = (name: string): string => {
+    if (!req.headers) return "";
+    const value = req.headers instanceof Headers ? req.headers.get(name) : (req.headers as any)[name];
+    return typeof value === "string" ? value : "";
+  };
+
+  const country = getHeader("x-vercel-ip-country") || getHeader("cf-ipcountry") || "";
+  const ipRegion = getHeader("x-vercel-ip-country-region") || "";
+  const isQuebec = country.toUpperCase() === "CA" && ipRegion.toUpperCase() === "QC";
+
   const acceptLanguage =
     req.headers instanceof Headers ? req.headers.get("accept-language") : req.headers["accept-language"];
 
   const languages = acceptLanguage ? parse(acceptLanguage) : [];
 
-  const code: string = languages[0]?.code ?? "";
-  const region: string = languages[0]?.region ?? "";
+  let code: string = languages[0]?.code ?? "";
+  let region: string = languages[0]?.region ?? "";
+
+  // If Quebec visitor, default to French Canadian if no explicit preference or if French is parsed
+  if (isQuebec) {
+    if (!code || code === "fr") {
+      code = "fr";
+      region = "CA";
+    }
+  }
 
   // the code should consist of 2 or 3 lowercase letters
   // the regex underneath is more permissive
-  const testedCode = /^[a-zA-Z]+$/.test(code) ? code : "en";
+  const testedCode = /^[a-zA-Z]+$/.test(code) ? code : isQuebec ? "fr" : "en";
 
   // the code should consist of either 2 uppercase letters or 3 digits
   // the regex underneath is more permissive
-  const testedRegion = /^[a-zA-Z0-9]+$/.test(region) ? region : "";
+  const testedRegion = /^[a-zA-Z0-9]+$/.test(region) ? region : isQuebec ? "CA" : "";
 
   const requestedLocale = `${testedCode}${testedRegion !== "" ? "-" : ""}${testedRegion}`;
 

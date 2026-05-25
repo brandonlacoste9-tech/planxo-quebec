@@ -20,7 +20,7 @@ const DEFAULT_WEBHOOK_VERSION: WebhookVersion = WebhookVersion.V_2021_10_20;
 
 const VALID_WEBHOOK_VERSIONS: Set<string> = new Set<string>(Object.values(WebhookVersion));
 
-export { WebhookVersion, DEFAULT_WEBHOOK_VERSION, VALID_WEBHOOK_VERSIONS };
+export { DEFAULT_WEBHOOK_VERSION, VALID_WEBHOOK_VERSIONS, WebhookVersion };
 export function isValidWebhookVersion(value: string): value is WebhookVersion {
   return VALID_WEBHOOK_VERSIONS.has(value);
 }

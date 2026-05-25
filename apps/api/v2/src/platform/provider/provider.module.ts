@@ -1,9 +1,9 @@
-import { CalProviderController } from "@/platform/provider/provider.controller";
+import { Module } from "@nestjs/common";
 import { CredentialsRepository } from "@/modules/credentials/credentials.repository";
 import { OAuthClientModule } from "@/modules/oauth-clients/oauth-client.module";
 import { PrismaModule } from "@/modules/prisma/prisma.module";
 import { TokensModule } from "@/modules/tokens/tokens.module";
-import { Module } from "@nestjs/common";
+import { CalProviderController } from "@/platform/provider/provider.controller";
 
 @Module({
   imports: [PrismaModule, TokensModule, OAuthClientModule],

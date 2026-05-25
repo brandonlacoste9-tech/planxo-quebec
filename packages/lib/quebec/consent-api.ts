@@ -6,10 +6,10 @@
  * DELETE /api/quebec/consent  — Withdraw consent
  */
 
-import type { NextApiRequest, NextApiResponse } from "next";
-import { getServerSession } from "next-auth";
-import { prisma } from "@calcom/prisma";
+import { getServerSession } from "@calcom/features/auth/lib/getServerSession";
 import { logAudit, logPiiAccess } from "@calcom/lib/quebec/audit-logger";
+import { prisma } from "@calcom/prisma";
+import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const session = await getServerSession({ req });
@@ -24,11 +24,20 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   // ── GET: Read consent status ──
   if (req.method === "GET") {
-    await logPiiAccess(userId, "ConsentRecord", undefined, "User viewed consent status", { ipAddress: ip, userAgent: ua });
+    await logPiiAccess(userId, "ConsentRecord", undefined, "User viewed consent status", {
+      ipAddress: ip,
+      userAgent: ua,
+    });
 
     const [records, user] = await Promise.all([
-      prisma.consentRecord.findMany({ where: { userId }, select: { purpose: true, granted: true, createdAt: true } }),
-      prisma.user.findUnique({ where: { id: userId }, select: { consentGiven: true, consentGivenAt: true, consentPurposes: true } }),
+      prisma.consentRecord.findMany({
+        where: { userId },
+        select: { purpose: true, granted: true, createdAt: true },
+      }),
+      prisma.user.findUnique({
+        where: { id: userId },
+        select: { consentGiven: true, consentGivenAt: true, consentPurposes: true },
+      }),
     ]);
 
     return res.status(200).json({ records, user });

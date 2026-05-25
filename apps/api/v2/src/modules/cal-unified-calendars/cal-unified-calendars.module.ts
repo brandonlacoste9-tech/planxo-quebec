@@ -1,9 +1,4 @@
 import { Module } from "@nestjs/common";
-import { BookingReferencesRepository_2024_08_13 } from "@/platform/bookings/2024-08-13/repositories/booking-references.repository";
-import { CalendarsRepository } from "@/platform/calendars/calendars.repository";
-import { CalendarsService } from "@/platform/calendars/services/calendars.service";
-import { CalendarsCacheService } from "@/platform/calendars/services/calendars-cache.service";
-import { GoogleCalendarService as GCalService } from "@/platform/calendars/services/gcal.service";
 import { AppsRepository } from "@/modules/apps/apps.repository";
 import { CalUnifiedCalendarsController } from "@/modules/cal-unified-calendars/controllers/cal-unified-calendars.controller";
 import { GoogleCalendarService } from "@/modules/cal-unified-calendars/services/google-calendar.service";
@@ -16,6 +11,11 @@ import { RedisModule } from "@/modules/redis/redis.module";
 import { SelectedCalendarsRepository } from "@/modules/selected-calendars/selected-calendars.repository";
 import { TokensModule } from "@/modules/tokens/tokens.module";
 import { UsersRepository } from "@/modules/users/users.repository";
+import { BookingReferencesRepository_2024_08_13 } from "@/platform/bookings/2024-08-13/repositories/booking-references.repository";
+import { CalendarsRepository } from "@/platform/calendars/calendars.repository";
+import { CalendarsService } from "@/platform/calendars/services/calendars.service";
+import { CalendarsCacheService } from "@/platform/calendars/services/calendars-cache.service";
+import { GoogleCalendarService as GCalService } from "@/platform/calendars/services/gcal.service";
 
 @Module({
   imports: [TokensModule, RedisModule],

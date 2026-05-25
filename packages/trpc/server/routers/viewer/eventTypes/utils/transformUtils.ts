@@ -1,3 +1,4 @@
+import process from "node:process";
 import { getPlaceholderAvatar } from "@calcom/lib/defaultAvatarImage";
 import { getUserAvatarUrl } from "@calcom/lib/getAvatarUrl";
 import type { MembershipRole } from "@calcom/prisma/enums";

@@ -206,7 +206,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   if (!canViewHiddenData) {
     for (const key in bookingInfo.responses) {
       const field = eventTypeRaw.bookingFields.find((field) => field.name === key);
-      if (field && !!field.hidden) {
+      if (field && field.hidden) {
         delete bookingInfo.responses[key];
       }
     }

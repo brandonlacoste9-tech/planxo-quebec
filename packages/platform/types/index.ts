@@ -13,5 +13,4 @@ export * from "./pagination/pagination.output";
 export * from "./permissions";
 export * from "./schedules";
 export * from "./slots";
-
 export * from "./utils/normalizeTimezone";

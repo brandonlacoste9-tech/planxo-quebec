@@ -14,13 +14,13 @@ import {
   deleteWebhookScheduledTriggers,
 } from "@calcom/features/webhooks/lib/scheduleTrigger";
 import sendPayload from "@calcom/features/webhooks/lib/sendOrSchedulePayload";
+import { getTranslation } from "@calcom/i18n/server";
 import { CalendarEventBuilder } from "@calcom/lib/builders/CalendarEvent/builder";
 import { CalendarEventDirector } from "@calcom/lib/builders/CalendarEvent/director";
 import getOrgIdFromMemberOrTeamId from "@calcom/lib/getOrgIdFromMemberOrTeamId";
 import { getTeamIdFromEventType } from "@calcom/lib/getTeamIdFromEventType";
 import logger from "@calcom/lib/logger";
 import { safeStringify } from "@calcom/lib/safeStringify";
-import { getTranslation } from "@calcom/i18n/server";
 import { BookingWebhookFactory } from "@calcom/lib/server/service/BookingWebhookFactory";
 import { prisma } from "@calcom/prisma";
 import type { BookingReference, EventType } from "@calcom/prisma/client";
@@ -93,7 +93,6 @@ export const requestRescheduleHandler = async ({ ctx, input, source }: RequestRe
   await Promise.all(webhookPromises).catch((error) => {
     log.error("Error while deleting scheduled webhook triggers", JSON.stringify({ error }));
   });
-
 
   const [mainAttendee] = bookingToReschedule.attendees;
   // @NOTE: Should we assume attendees language?
@@ -236,9 +235,7 @@ export const requestRescheduleHandler = async ({ ctx, input, source }: RequestRe
     uid: bookingToReschedule.uid,
     location: bookingToReschedule.location,
     destinationCalendar: bookingToReschedule.destinationCalendar,
-    cancellationReason: [tAttendees("please_reschedule"), cancellationReason]
-    .filter(Boolean)
-    .join(" "),
+    cancellationReason: [tAttendees("please_reschedule"), cancellationReason].filter(Boolean).join(" "),
     iCalUID: bookingToReschedule.iCalUID,
     ...(bookingToReschedule.smsReminderNumber && {
       smsReminderNumber: bookingToReschedule.smsReminderNumber,
@@ -284,5 +281,4 @@ export const requestRescheduleHandler = async ({ ctx, input, source }: RequestRe
     })
   );
   await Promise.all(promises);
-
 };

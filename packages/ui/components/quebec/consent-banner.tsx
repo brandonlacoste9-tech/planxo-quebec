@@ -2,13 +2,13 @@
 
 /**
  * Law 25 Consent Banner — Quebec privacy compliance
- * 
+ *
  * Granular consent for cookies, analytics, and marketing.
  * Shown on first visit; remembers choice in localStorage.
  * Conformément à la Loi 25 du Québec.
  */
 
-import { useState, useEffect, useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 type Purpose = "essential" | "analytics" | "marketing";
 type ConsentMap = Record<Purpose, boolean>;
@@ -90,7 +90,9 @@ export default function ConsentBanner() {
   }, []);
 
   function trySendConsent(map: ConsentMap) {
-    const purposes = Object.entries(map).filter(([, v]) => v).map(([k]) => k);
+    const purposes = Object.entries(map)
+      .filter(([, v]) => v)
+      .map(([k]) => k);
     // Try to get userId from window if available (injected by booking page)
     const userId = (window as any).__planxo_userId;
     if (userId) {
@@ -200,21 +202,40 @@ const styles: Record<string, React.CSSProperties> = {
   shield: { fontSize: 28, flexShrink: 0 },
   title: { margin: 0, fontSize: 16, fontWeight: 700, color: "#242424" },
   subtitle: { margin: "4px 0 0", fontSize: 13, color: "#6b7280", lineHeight: 1.5 },
-  purposes: { display: "flex", flexDirection: "column", gap: 8, marginBottom: 16, padding: "12px 0", borderTop: "1px solid rgba(0,0,0,0.06)", borderBottom: "1px solid rgba(0,0,0,0.06)" },
+  purposes: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 8,
+    marginBottom: 16,
+    padding: "12px 0",
+    borderTop: "1px solid rgba(0,0,0,0.06)",
+    borderBottom: "1px solid rgba(0,0,0,0.06)",
+  },
   purposeRow: { display: "flex", alignItems: "center", gap: 12, cursor: "pointer", padding: "6px 0" },
   purposeName: { fontSize: 13, fontWeight: 600, color: "#242424" },
   purposeDesc: { fontSize: 11, color: "#898989", marginTop: 1 },
   checkbox: { width: 18, height: 18, cursor: "pointer", accentColor: "#242424" },
   actions: { display: "flex", gap: 8, justifyContent: "flex-end", flexWrap: "wrap" as any },
   btnPrimary: {
-    padding: "10px 20px", borderRadius: 8, border: "none",
-    background: "#242424", color: "#fff", fontSize: 13, fontWeight: 600,
-    cursor: "pointer", fontFamily: "'Inter', sans-serif",
+    padding: "10px 20px",
+    borderRadius: 8,
+    border: "none",
+    background: "#242424",
+    color: "#fff",
+    fontSize: 13,
+    fontWeight: 600,
+    cursor: "pointer",
+    fontFamily: "'Inter', sans-serif",
   },
   btnOutline: {
-    padding: "10px 20px", borderRadius: 8,
-    border: "1px solid rgba(0,0,0,0.12)", background: "#fff",
-    color: "#242424", fontSize: 13, fontWeight: 600,
-    cursor: "pointer", fontFamily: "'Inter', sans-serif",
+    padding: "10px 20px",
+    borderRadius: 8,
+    border: "1px solid rgba(0,0,0,0.12)",
+    background: "#fff",
+    color: "#242424",
+    fontSize: 13,
+    fontWeight: 600,
+    cursor: "pointer",
+    fontFamily: "'Inter', sans-serif",
   },
 };

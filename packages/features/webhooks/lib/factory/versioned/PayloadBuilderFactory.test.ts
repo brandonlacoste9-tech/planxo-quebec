@@ -1,10 +1,9 @@
-import { describe, it, expect, beforeEach } from "vitest";
 import { WebhookTriggerEvents } from "@calcom/prisma/enums";
-
+import { beforeEach, describe, expect, it } from "vitest";
 import type { BookingWebhookEventDTO } from "../../dto/types";
+import { WebhookVersion as WebhookVersionEnum } from "../../interface/IWebhookRepository";
 import { PayloadBuilderFactory, type PayloadBuilderSet } from "./PayloadBuilderFactory";
 import * as V2021_10_20 from "./v2021-10-20";
-import { WebhookVersion as WebhookVersionEnum } from "../../interface/IWebhookRepository";
 
 describe("PayloadBuilderFactory", () => {
   let factory: PayloadBuilderFactory;
@@ -107,7 +106,6 @@ describe("PayloadBuilderFactory", () => {
         expect(builder).toBe(defaultBuilders.meeting);
       });
     });
-
   });
 
   describe("Fallback Behavior", () => {

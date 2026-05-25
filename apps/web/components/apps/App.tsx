@@ -1,7 +1,5 @@
 import { useLocale } from "@calcom/lib/hooks/useLocale";
-
 import Shell from "~/shell/Shell";
-
 import type { AppPageProps } from "./AppPage";
 import { AppPage } from "./AppPage";
 

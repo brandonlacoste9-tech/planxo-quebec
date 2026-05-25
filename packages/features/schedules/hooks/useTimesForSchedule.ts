@@ -1,10 +1,9 @@
-import { shallow } from "zustand/shallow";
-
 import dayjs from "@calcom/dayjs";
 import { useBookerStoreContext } from "@calcom/features/bookings/Booker/BookerStoreProvider";
 import type { BookerState } from "@calcom/features/bookings/Booker/types";
 import { getPrefetchMonthCount } from "@calcom/features/bookings/Booker/utils/getPrefetchMonthCount";
 import { isPrefetchNextMonthEnabled } from "@calcom/features/bookings/Booker/utils/isPrefetchNextMonthEnabled";
+import { shallow } from "zustand/shallow";
 
 type UseScheduleWithCacheArgs = {
   username?: string | null;
@@ -106,7 +105,7 @@ export const useTimesForSchedule = ({
   let startTime;
   let endTime;
 
-  if (!!dayCount && dayCount > 0) {
+  if (dayCount && dayCount > 0) {
     if (selectedDate) {
       startTime = dayjs(selectedDate).toISOString();
       endTime = dayjs(selectedDate).add(dayCount, "day").toISOString();

@@ -1,16 +1,5 @@
-import { CreateScheduleOutput_2024_04_15 } from "@/platform/schedules/schedules_2024_04_15/outputs/create-schedule.output";
-import { DeleteScheduleOutput_2024_04_15 } from "@/platform/schedules/schedules_2024_04_15/outputs/delete-schedule.output";
-import { GetDefaultScheduleOutput_2024_04_15 } from "@/platform/schedules/schedules_2024_04_15/outputs/get-default-schedule.output";
-import { GetScheduleOutput_2024_04_15 } from "@/platform/schedules/schedules_2024_04_15/outputs/get-schedule.output";
-import { GetSchedulesOutput_2024_04_15 } from "@/platform/schedules/schedules_2024_04_15/outputs/get-schedules.output";
-import { UpdateScheduleOutput_2024_04_15 } from "@/platform/schedules/schedules_2024_04_15/outputs/update-schedule.output";
-import { SchedulesService_2024_04_15 } from "@/platform/schedules/schedules_2024_04_15/services/schedules.service";
-import { VERSION_2024_04_15_VALUE } from "@/lib/api-versions";
-import { GetUser } from "@/modules/auth/decorators/get-user/get-user.decorator";
-import { Permissions } from "@/modules/auth/decorators/permissions/permissions.decorator";
-import { ApiAuthGuard } from "@/modules/auth/guards/api-auth/api-auth.guard";
-import { PermissionsGuard } from "@/modules/auth/guards/permissions/permissions.guard";
-import { UserWithProfile } from "@/modules/users/users.repository";
+import { SCHEDULE_READ, SCHEDULE_WRITE, SUCCESS_STATUS } from "@calcom/platform-constants";
+import { UpdateScheduleInput_2024_04_15 } from "@calcom/platform-types";
 import {
   Body,
   Controller,
@@ -19,16 +8,25 @@ import {
   HttpCode,
   HttpStatus,
   Param,
-  Post,
   Patch,
+  Post,
   UseGuards,
 } from "@nestjs/common";
 import { ApiExcludeController as DocsExcludeController } from "@nestjs/swagger";
-
-import { SCHEDULE_READ, SCHEDULE_WRITE, SUCCESS_STATUS } from "@calcom/platform-constants";
-import { UpdateScheduleInput_2024_04_15 } from "@calcom/platform-types";
-
 import { CreateScheduleInput_2024_04_15 } from "../inputs/create-schedule.input";
+import { VERSION_2024_04_15_VALUE } from "@/lib/api-versions";
+import { GetUser } from "@/modules/auth/decorators/get-user/get-user.decorator";
+import { Permissions } from "@/modules/auth/decorators/permissions/permissions.decorator";
+import { ApiAuthGuard } from "@/modules/auth/guards/api-auth/api-auth.guard";
+import { PermissionsGuard } from "@/modules/auth/guards/permissions/permissions.guard";
+import { UserWithProfile } from "@/modules/users/users.repository";
+import { CreateScheduleOutput_2024_04_15 } from "@/platform/schedules/schedules_2024_04_15/outputs/create-schedule.output";
+import { DeleteScheduleOutput_2024_04_15 } from "@/platform/schedules/schedules_2024_04_15/outputs/delete-schedule.output";
+import { GetDefaultScheduleOutput_2024_04_15 } from "@/platform/schedules/schedules_2024_04_15/outputs/get-default-schedule.output";
+import { GetScheduleOutput_2024_04_15 } from "@/platform/schedules/schedules_2024_04_15/outputs/get-schedule.output";
+import { GetSchedulesOutput_2024_04_15 } from "@/platform/schedules/schedules_2024_04_15/outputs/get-schedules.output";
+import { UpdateScheduleOutput_2024_04_15 } from "@/platform/schedules/schedules_2024_04_15/outputs/update-schedule.output";
+import { SchedulesService_2024_04_15 } from "@/platform/schedules/schedules_2024_04_15/services/schedules.service";
 
 @Controller({
   path: "/v2/schedules",

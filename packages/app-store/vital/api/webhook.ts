@@ -1,6 +1,3 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-import queue from "queue";
-
 import dayjs from "@calcom/dayjs";
 import { IS_PRODUCTION } from "@calcom/lib/constants";
 import { HttpError as HttpCode } from "@calcom/lib/http-error";
@@ -9,7 +6,8 @@ import { getServerErrorFromUnknown } from "@calcom/lib/server/getServerErrorFrom
 import prisma from "@calcom/prisma";
 import type { Prisma } from "@calcom/prisma/client";
 import { BookingStatus } from "@calcom/prisma/enums";
-
+import type { NextApiRequest, NextApiResponse } from "next";
+import queue from "queue";
 import { Reschedule } from "../lib";
 import { initVitalClient, vitalEnv } from "../lib/client";
 
@@ -92,7 +90,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           const userMetadata = userWithMetadata?.metadata as Prisma.JsonObject;
           const vitalSettings =
             ((userWithMetadata?.metadata as Prisma.JsonObject)?.vitalSettings as Prisma.JsonObject) || {};
-          if (!!userMetadata && !!vitalSettings) {
+          if (userMetadata && vitalSettings) {
             minimumSleepTime = vitalSettings.sleepValue as number;
             parameterFilter = vitalSettings.parameter as string;
           } else {
@@ -100,7 +98,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             return;
           }
 
-          if (!Object.prototype.hasOwnProperty.call(event.data, parameterFilter)) {
+          if (!Object.hasOwn(event.data, parameterFilter)) {
             res.status(500).json({ message: "Selected param not available" });
             return;
           }

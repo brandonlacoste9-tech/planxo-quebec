@@ -930,9 +930,7 @@ const CTA = ({ profileOptions }: { profileOptions: ProfileOption[] }) => {
         }}
         placeholder={t("search")}
       />
-      <Button
-        data-testid="new-event-type"
-        href={`?dialog=new&eventPage=${profileOptions[0]?.slug ?? ""}`}>
+      <Button data-testid="new-event-type" href={`?dialog=new&eventPage=${profileOptions[0]?.slug ?? ""}`}>
         {t("new")}
       </Button>
       <CreateEventTypeDialog profileOptions={profileOptions} />
@@ -963,6 +961,39 @@ const EmptyEventTypeList = ({
   );
 };
 
+const ProfileLinkBanner = ({ bookerUrl, slug }: { bookerUrl: string; slug: string }) => {
+  const { t } = useLocale();
+  const { copyToClipboard } = useCopy();
+  const profileLink = `${bookerUrl}/${slug}`;
+
+  return (
+    <div className="mb-6 flex flex-col items-center justify-between gap-4 rounded-xl border border-subtle bg-muted p-6 sm:flex-row">
+      <div>
+        <h2 className="text-lg font-semibold text-default">
+          {t("your_booking_link") || "Your Booking Link"}
+        </h2>
+        <p className="mt-1 text-sm text-subtle">
+          {t("share_your_link_description") || "Share your link so people can book time with you."}
+        </p>
+      </div>
+      <div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row sm:items-center">
+        <div className="truncate rounded-md border border-subtle bg-default px-3 py-2 text-sm font-medium text-default sm:max-w-xs">
+          {profileLink}
+        </div>
+        <Button
+          className="w-full sm:w-auto"
+          onClick={() => {
+            copyToClipboard(profileLink);
+            showToast(t("link_copied"), "success");
+          }}
+          StartIcon="copy">
+          {t("copy_link") || "Copy Link"}
+        </Button>
+      </div>
+    </div>
+  );
+};
+
 const InfiniteScrollMain = ({
   eventTypeGroups,
   profiles,
@@ -982,11 +1013,15 @@ const InfiniteScrollMain = ({
 
   const activeEventTypeGroup =
     eventTypeGroups.filter((item) => item.teamId === data.teamId) ?? eventTypeGroups[0];
+  const activeGroup = activeEventTypeGroup[0];
 
   return (
     <>
       {eventTypeGroups.length > 1 && <HorizontalTabs tabs={tabs} />}
-      {eventTypeGroups.length >= 1 && <InfiniteTeamsTab activeEventTypeGroup={activeEventTypeGroup[0]} />}
+      {activeGroup && (
+        <ProfileLinkBanner bookerUrl={activeGroup.bookerUrl || ""} slug={activeGroup.profile.slug || ""} />
+      )}
+      {eventTypeGroups.length >= 1 && <InfiniteTeamsTab activeEventTypeGroup={activeGroup} />}
       {eventTypeGroups.length === 0 && <CreateFirstEventTypeView slug={profiles[0].slug ?? ""} />}
       <EventTypeEmbedDialog />
       {searchParams?.get("dialog") === "duplicate" && <DuplicateDialog />}

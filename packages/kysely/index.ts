@@ -3,7 +3,7 @@ import { DeduplicateJoinsPlugin, Kysely, ParseJSONResultsPlugin, PostgresDialect
 import { Pool } from "pg";
 import type { Booking, DB } from "./types";
 
-export type { DB, Booking };
+export type { Booking, DB };
 
 const connectionString = process.env.DATABASE_URL ?? "postgresql://postgres:@localhost:5450/calendso";
 

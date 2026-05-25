@@ -105,5 +105,5 @@ function LimitedBadges({
   );
 }
 
-export { LimitedBadges };
 export type { BadgeItem };
+export { LimitedBadges };

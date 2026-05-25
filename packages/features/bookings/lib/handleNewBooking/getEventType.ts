@@ -1,7 +1,6 @@
 import { getDefaultEvent } from "@calcom/features/eventtypes/lib/defaultEvents";
 import { HttpError } from "@calcom/lib/http-error";
 import { withReporting } from "@calcom/lib/sentryWrapper";
-
 import { getBookingFieldsWithSystemFields } from "../getBookingFields";
 import { getEventTypesFromDB } from "./getEventTypesFromDB";
 
@@ -18,7 +17,7 @@ const _getEventType = async ({
 
   // handle dynamic user
   const eventType =
-    !eventTypeId && !!eventTypeSlug ? getDefaultEvent(eventTypeSlug) : await getEventTypesFromDB(eventTypeId);
+    !eventTypeId && eventTypeSlug ? getDefaultEvent(eventTypeSlug) : await getEventTypesFromDB(eventTypeId);
 
   const isOrgTeamEvent = !!eventType?.team && !!eventType?.team?.parentId;
 

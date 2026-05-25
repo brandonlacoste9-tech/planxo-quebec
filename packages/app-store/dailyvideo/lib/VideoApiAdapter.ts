@@ -1,31 +1,30 @@
-import { z } from "zod";
-
+import process from "node:process";
 import { getDailyAppKeys } from "@calcom/app-store/dailyvideo/lib/getDailyAppKeys";
 import { prisma } from "@calcom/prisma";
-import type { GetRecordingsResponseSchema, GetAccessLinkResponseSchema } from "@calcom/prisma/zod-utils";
+import type { GetAccessLinkResponseSchema, GetRecordingsResponseSchema } from "@calcom/prisma/zod-utils";
 import {
-  getRecordingsResponseSchema,
   getAccessLinkResponseSchema,
+  getRecordingsResponseSchema,
   recordingItemSchema,
 } from "@calcom/prisma/zod-utils";
 import type { CalendarEvent } from "@calcom/types/Calendar";
 import type { CredentialForCalendarService } from "@calcom/types/Credential";
 import type { PartialReference } from "@calcom/types/EventManager";
 import type { VideoApiAdapter, VideoCallData } from "@calcom/types/VideoApiAdapter";
-
+import { z } from "zod";
+import type { batchProcessorBody, TGetTranscriptAccessLink, TSubmitBatchProcessorJobRes } from "../zod";
 import {
-  ZSubmitBatchProcessorJobRes,
-  ZGetTranscriptAccessLink,
   getMeetingInformationResponseSchema,
-  TGetMeetingInformationResponsesSchema,
+  type TGetMeetingInformationResponsesSchema,
+  ZGetTranscriptAccessLink,
+  ZSubmitBatchProcessorJobRes,
 } from "../zod";
-import type { TSubmitBatchProcessorJobRes, TGetTranscriptAccessLink, batchProcessorBody } from "../zod";
 import { fetcher } from "./dailyApiFetcher";
 import {
   dailyReturnTypeSchema,
-  getTranscripts,
   getBatchProcessJobs,
   getRooms,
+  getTranscripts,
   meetingTokenSchema,
   ZGetMeetingTokenResponseSchema,
 } from "./types";
@@ -211,7 +210,7 @@ export const setEnableRecordingUIAndUserIdForOrganizer = async (
   if (!meetingToken) return null;
 
   const token = await fetcher(`/meeting-tokens/${meetingToken}`).then(ZGetMeetingTokenResponseSchema.parse);
-  if (token.enable_recording_ui === false && !!token.user_id) return null;
+  if (token.enable_recording_ui === false && token.user_id) return null;
 
   const organizerMeetingToken = await postToDailyAPI("/meeting-tokens", {
     properties: {

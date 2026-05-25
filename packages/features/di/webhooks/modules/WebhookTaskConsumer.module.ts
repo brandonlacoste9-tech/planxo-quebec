@@ -41,4 +41,5 @@ webhookTaskConsumerModule.bind(WEBHOOK_TOKENS.WEBHOOK_TASK_CONSUMER).toFactory((
     logger
   );
 });
+
 export { webhookTaskConsumerModule };

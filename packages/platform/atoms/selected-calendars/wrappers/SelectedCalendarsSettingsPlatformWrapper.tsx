@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import { useLocale } from "@calcom/lib/hooks/useLocale";
 import type { CALENDARS } from "@calcom/platform-constants";
 import { QueryCell } from "@calcom/trpc/components/QueryCell";
@@ -13,7 +11,7 @@ import { DisconnectIntegrationComponent } from "@calcom/ui/components/disconnect
 import { Dropdown, DropdownMenuContent, DropdownMenuTrigger } from "@calcom/ui/components/dropdown";
 import { Switch } from "@calcom/ui/components/form";
 import { List } from "@calcom/ui/components/list";
-
+import { useState } from "react";
 import * as Connect from "../../connect";
 import { AppleConnect } from "../../connect/apple/AppleConnect";
 import { useAddSelectedCalendar } from "../../hooks/calendars/useAddSelectedCalendar";
@@ -110,7 +108,7 @@ export const SelectedCalendarsSettingsPlatformWrapper = ({
                   noBorderTreatment
                   className={classNamesObject?.selectedCalendarsListClassNames?.container || "p-6 pt-2"}>
                   {data.connectedCalendars.map((connectedCalendar) => {
-                    if (!!connectedCalendar.calendars && connectedCalendar.calendars.length > 0) {
+                    if (connectedCalendar.calendars && connectedCalendar.calendars.length > 0) {
                       return (
                         <AppListCard
                           key={`list-${connectedCalendar.credentialId}-${connectedCalendar.integration.slug}`}

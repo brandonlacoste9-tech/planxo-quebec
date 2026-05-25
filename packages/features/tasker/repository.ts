@@ -1,8 +1,7 @@
-import { prisma } from "@calcom/prisma";
 import type { PrismaClient } from "@calcom/prisma";
+import { prisma } from "@calcom/prisma";
 import { Prisma } from "@calcom/prisma/client";
-
-import { type TaskTypes } from "./tasker";
+import type { TaskTypes } from "./tasker";
 
 const whereSucceeded: Prisma.TaskWhereInput = {
   succeededAt: { not: null },
@@ -210,7 +209,6 @@ export class TaskRepository {
     //   },
     // });
   }
-
 }
 
 // Export singleton instance for backward compatibility

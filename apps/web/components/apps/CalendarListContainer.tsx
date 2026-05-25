@@ -128,7 +128,7 @@ export function CalendarListContainer({
   });
 
   let content = null;
-  if (!!data.connectedCalendars.length || !!installedCalendars?.items.length) {
+  if (data.connectedCalendars.length || installedCalendars?.items.length) {
     let headingContent = null;
     if (heading) {
       headingContent = (

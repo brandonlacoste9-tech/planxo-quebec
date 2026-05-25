@@ -1,3 +1,4 @@
+import type { UserFromSession } from "@calcom/features/auth/lib/userFromSessionUtils";
 import { getAvailabilityFromSchedule } from "@calcom/lib/availability";
 import { timeZoneSchema } from "@calcom/lib/dayjs/timeZone.schema";
 import { hasEditPermissionForUserID } from "@calcom/lib/hasEditPermissionForUser";
@@ -5,7 +6,6 @@ import { HttpError } from "@calcom/lib/http-error";
 import { transformScheduleToAvailabilityForAtom } from "@calcom/lib/schedules/transformers/for-atom";
 import type { PrismaClient } from "@calcom/prisma";
 import { z } from "zod";
-import type { UserFromSession } from "@calcom/features/auth/lib/userFromSessionUtils";
 import { ScheduleRepository } from "../repositories/ScheduleRepository";
 
 export const ZUpdateInputSchema = z.object({
@@ -46,14 +46,15 @@ export class ScheduleService {
   constructor(private prisma: PrismaClient) {}
 
   async update({ input, user }: IUpdateScheduleOptions) {
-    const availability = input.schedule
-      ? getAvailabilityFromSchedule(input.schedule)
-      : (input.dateOverrides || []).map((dateOverride) => ({
-          startTime: dateOverride.start,
-          endTime: dateOverride.end,
-          date: dateOverride.start,
-          days: [],
-        }));
+    const availability = [
+      ...(input.schedule ? getAvailabilityFromSchedule(input.schedule) : []),
+      ...(input.dateOverrides || []).map((override) => ({
+        date: override.start,
+        startTime: override.start,
+        endTime: override.end,
+        days: [],
+      })),
+    ];
 
     // Not able to update the schedule with userId where clause, so fetch schedule separately and then validate
     // Bug: https://github.com/prisma/prisma/issues/7290
@@ -125,14 +126,7 @@ export class ScheduleService {
             },
           },
           createMany: {
-            data: [
-              ...availability,
-              ...(input.dateOverrides || []).map((override) => ({
-                date: override.start,
-                startTime: override.start,
-                endTime: override.end,
-              })),
-            ],
+            data: availability,
           },
         },
       },

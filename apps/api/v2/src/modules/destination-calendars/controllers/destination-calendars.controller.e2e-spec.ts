@@ -12,13 +12,13 @@ import { UserRepositoryFixture } from "test/fixtures/repository/users.repository
 import { randomString } from "test/utils/randomString";
 import { AppModule } from "@/app.module";
 import { bootstrap } from "@/bootstrap";
-import { CalendarsService } from "@/platform/calendars/services/calendars.service";
 import { HttpExceptionFilter } from "@/filters/http-exception.filter";
 import { PrismaExceptionFilter } from "@/filters/prisma-exception.filter";
 import { PermissionsGuard } from "@/modules/auth/guards/permissions/permissions.guard";
 import { DestinationCalendarsOutputResponseDto } from "@/modules/destination-calendars/outputs/destination-calendars.output";
 import { TokensModule } from "@/modules/tokens/tokens.module";
 import { UsersModule } from "@/modules/users/users.module";
+import { CalendarsService } from "@/platform/calendars/services/calendars.service";
 
 const CLIENT_REDIRECT_URI = "http://localhost:5555";
 

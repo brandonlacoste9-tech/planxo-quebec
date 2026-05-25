@@ -1,9 +1,7 @@
+import classNames from "@calcom/ui/classNames";
 import type { DialogProps } from "@radix-ui/react-dialog";
 import { Command as CommandPrimitive } from "cmdk";
 import * as React from "react";
-
-import classNames from "@calcom/ui/classNames";
-
 import { Dialog, DialogContent } from "../dialog";
 
 const Command = React.forwardRef<
@@ -126,11 +124,11 @@ CommandShortcut.displayName = "CommandShortcut";
 export {
   Command,
   CommandDialog,
-  CommandInput,
-  CommandList,
   CommandEmpty,
   CommandGroup,
+  CommandInput,
   CommandItem,
-  CommandShortcut,
+  CommandList,
   CommandSeparator,
+  CommandShortcut,
 };

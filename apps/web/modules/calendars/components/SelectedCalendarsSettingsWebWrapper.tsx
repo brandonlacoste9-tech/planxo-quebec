@@ -55,7 +55,7 @@ const ConnectedCalendarList = ({
   return (
     <List noBorderTreatment className="p-6 pt-2">
       {items.map((connectedCalendar) => {
-        if (!!connectedCalendar.calendars && connectedCalendar.calendars.length > 0) {
+        if (connectedCalendar.calendars && connectedCalendar.calendars.length > 0) {
           return (
             <AppListCardWebWrapper
               key={`list-${connectedCalendar.credentialId}-${scope}`}

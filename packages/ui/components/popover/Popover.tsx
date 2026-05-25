@@ -1,7 +1,6 @@
+import classNames from "@calcom/ui/classNames";
 import * as PopoverPrimitive from "@radix-ui/react-popover";
 import * as React from "react";
-
-import classNames from "@calcom/ui/classNames";
 
 const Popover = PopoverPrimitive.Root;
 
@@ -27,4 +26,4 @@ const PopoverContent = React.forwardRef<
 
 PopoverContent.displayName = PopoverPrimitive.Content.displayName;
 
-export { Popover, PopoverTrigger, PopoverContent };
+export { Popover, PopoverContent, PopoverTrigger };

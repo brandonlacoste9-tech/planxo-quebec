@@ -1,11 +1,11 @@
-import { SchedulesController_2024_04_15 } from "@/platform/schedules/schedules_2024_04_15/controllers/schedules.controller";
-import { SchedulesRepository_2024_04_15 } from "@/platform/schedules/schedules_2024_04_15/schedules.repository";
-import { SchedulesService_2024_04_15 } from "@/platform/schedules/schedules_2024_04_15/services/schedules.service";
+import { Module } from "@nestjs/common";
 import { PrismaScheduleRepository } from "@/lib/repositories/prisma-schedule.repository";
 import { PrismaModule } from "@/modules/prisma/prisma.module";
 import { TokensModule } from "@/modules/tokens/tokens.module";
 import { UsersModule } from "@/modules/users/users.module";
-import { Module } from "@nestjs/common";
+import { SchedulesController_2024_04_15 } from "@/platform/schedules/schedules_2024_04_15/controllers/schedules.controller";
+import { SchedulesRepository_2024_04_15 } from "@/platform/schedules/schedules_2024_04_15/schedules.repository";
+import { SchedulesService_2024_04_15 } from "@/platform/schedules/schedules_2024_04_15/services/schedules.service";
 
 @Module({
   imports: [PrismaModule, UsersModule, TokensModule],

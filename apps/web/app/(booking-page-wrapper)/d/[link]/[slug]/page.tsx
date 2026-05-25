@@ -1,12 +1,9 @@
-import { withAppDirSsr } from "app/WithAppDirSsr";
+import { buildLegacyCtx } from "@lib/buildLegacyCtx";
+import { getServerSideProps, type PageProps } from "@lib/d/[link]/[slug]/getServerSideProps";
 import type { PageProps as _PageProps } from "app/_types";
 import { _generateMetadata } from "app/_utils";
+import { withAppDirSsr } from "app/WithAppDirSsr";
 import { cookies, headers } from "next/headers";
-
-import { buildLegacyCtx } from "@lib/buildLegacyCtx";
-import { getServerSideProps } from "@lib/d/[link]/[slug]/getServerSideProps";
-import { type PageProps } from "@lib/d/[link]/[slug]/getServerSideProps";
-
 import Type from "~/d/[link]/d-type-view";
 
 export const generateMetadata = async ({ params, searchParams }: _PageProps) => {
@@ -20,7 +17,7 @@ export const generateMetadata = async ({ params, searchParams }: _PageProps) => 
   const profileName = eventData?.profile?.name ?? "";
   const title = eventData?.title ?? "";
   return await _generateMetadata(
-    (t) => `${rescheduleUid && !!booking ? t("reschedule") : ""} ${title} | ${profileName}`,
+    (t) => `${rescheduleUid && booking ? t("reschedule") : ""} ${title} | ${profileName}`,
     (t) => `${rescheduleUid ? t("reschedule") : ""} ${title}`,
     isBrandingHidden,
     undefined,

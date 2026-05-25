@@ -1160,7 +1160,7 @@ class CalApi {
 
     const existingModalEl = document.querySelector(`cal-modal-box[uid="${uid}"]`);
     // isConnectionPossible
-    if (!!existingModalEl && !!this.cal.iframe) {
+    if (existingModalEl && this.cal.iframe) {
       log(`Trying to reuse modal ${uid}`);
       const lastLoadedUrlObject = this.cal.getLastLoadedLinkInframe();
       const lastLoadedPathIsRouter = lastLoadedUrlObject?.pathname?.includes("/router");

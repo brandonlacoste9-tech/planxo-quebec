@@ -1,10 +1,9 @@
-import { expect } from "@playwright/test";
-
+import process from "node:process";
 import dayjs from "@calcom/dayjs";
 import { prisma } from "@calcom/prisma";
 import { BookingStatus } from "@calcom/prisma/enums";
 import { bookingMetadataSchema } from "@calcom/prisma/zod-utils";
-
+import { expect } from "@playwright/test";
 import { test } from "./lib/fixtures";
 import {
   bookTimeSlot,

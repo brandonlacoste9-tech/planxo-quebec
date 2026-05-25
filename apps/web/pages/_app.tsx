@@ -1,13 +1,12 @@
 import type { IncomingMessage } from "node:http";
+import { trpc } from "@calcom/trpc/react";
+import ConsentBanner from "@calcom/ui/components/quebec/consent-banner";
+import { WebPushProvider } from "@calcom/web/modules/notifications/components/WebPushContext";
+import type { AppProps } from "@lib/app-providers";
 import type { NextPageContext } from "next";
 import { SessionProvider } from "next-auth/react";
 import React from "react";
 import CacheProvider from "react-inlinesvg/provider";
-
-import { WebPushProvider } from "@calcom/web/modules/notifications/components/WebPushContext";
-import { trpc } from "@calcom/trpc/react";
-
-import type { AppProps } from "@lib/app-providers";
 
 import "../styles/globals.css";
 
@@ -20,6 +19,7 @@ function MyApp(props: AppProps) {
         {/* @ts-expect-error FIXME remove this comment when upgrading typescript to v5 */}
         <CacheProvider>
           {Component.PageWrapper ? <Component.PageWrapper {...props} /> : <Component {...pageProps} />}
+          <ConsentBanner />
         </CacheProvider>
       </WebPushProvider>
     </SessionProvider>

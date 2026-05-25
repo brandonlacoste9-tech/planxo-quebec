@@ -1,16 +1,16 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
 import { ErrorWithCode } from "@calcom/lib/errors";
 import { MembershipRole } from "@calcom/prisma/enums";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
 // Mock the repositories and external dependencies
 vi.mock("@calcom/features/host/repositories/HostRepository");
 vi.mock("@calcom/features/membership/repositories/MembershipRepository");
 vi.mock("@calcom/features/eventtypes/repositories/eventTypeRepository");
 
-import { EventTypeHostService } from "./EventTypeHostService";
+import { EventTypeRepository } from "@calcom/features/eventtypes/repositories/eventTypeRepository";
 import { HostRepository } from "@calcom/features/host/repositories/HostRepository";
 import { MembershipRepository } from "@calcom/features/membership/repositories/MembershipRepository";
-import { EventTypeRepository } from "@calcom/features/eventtypes/repositories/eventTypeRepository";
+import { EventTypeHostService } from "./EventTypeHostService";
 
 const mockPrisma = {} as never;
 

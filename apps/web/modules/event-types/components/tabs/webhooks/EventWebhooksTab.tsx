@@ -16,8 +16,8 @@ import Link from "next/link";
 import { useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { WebhookForm } from "~/webhooks/components";
-import WebhookListItem from "~/webhooks/components/WebhookListItem";
 import type { TWebhook, WebhookFormSubmitData } from "~/webhooks/components/WebhookForm";
+import WebhookListItem from "~/webhooks/components/WebhookListItem";
 
 export const EventWebhooksTab = ({ eventType }: Pick<EventTypeSetupProps, "eventType">) => {
   const { t } = useLocale();
@@ -167,8 +167,12 @@ export const EventWebhooksTab = ({ eventType }: Pick<EventTypeSetupProps, "event
                           key={webhook.id}
                           webhook={webhook}
                           permissions={{
-                            canEditWebhook: !(isChildrenManagedEventType && webhook.eventTypeId !== eventType.id),
-                            canDeleteWebhook: !(isChildrenManagedEventType && webhook.eventTypeId !== eventType.id),
+                            canEditWebhook: !(
+                              isChildrenManagedEventType && webhook.eventTypeId !== eventType.id
+                            ),
+                            canDeleteWebhook: !(
+                              isChildrenManagedEventType && webhook.eventTypeId !== eventType.id
+                            ),
                           }}
                           onEditWebhookAction={() => {
                             setEditModalOpen(true);

@@ -1,6 +1,5 @@
-import { expect } from "@playwright/test";
 import type { Page } from "@playwright/test";
-
+import { expect } from "@playwright/test";
 import { test } from "./lib/fixtures";
 
 async function testDuplicateAPICalls(
@@ -89,5 +88,4 @@ test.describe("Duplicate API Calls Prevention", () => {
     expect(trpcCalls).toBeLessThanOrEqual(1);
     expect(apiV2Calls).toBeLessThanOrEqual(1);
   });
-
 });

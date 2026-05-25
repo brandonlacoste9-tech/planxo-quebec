@@ -1,3 +1,4 @@
+import process from "node:process";
 import { loadTranslations } from "@calcom/i18n/server";
 import { BookingStatus } from "@calcom/prisma/enums";
 import { buildLegacyCtx } from "@lib/buildLegacyCtx";

@@ -28,4 +28,4 @@ export const Portal: typeof PopoverPortal = PopoverPortal;
 export const Content: typeof PopoverPrimitives.Content = PopoverContent;
 export const Arrow: typeof PopoverPrimitives.Arrow = PopoverArrow;
 
-export { Popover, PopoverTrigger, PopoverContent, PopoverAnchor, PopoverClose, PopoverPortal, PopoverArrow };
+export { Popover, PopoverAnchor, PopoverArrow, PopoverClose, PopoverContent, PopoverPortal, PopoverTrigger };

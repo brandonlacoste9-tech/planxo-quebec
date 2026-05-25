@@ -349,7 +349,7 @@ const BookerPlatformWrapperComponent = (
       schedule.refetch();
       props.onCreateBookingSuccess?.(data);
 
-      if (!preventEventTypeRedirect && !!event?.data?.successRedirectUrl) {
+      if (!preventEventTypeRedirect && event?.data?.successRedirectUrl) {
         window.location.href = event?.data?.successRedirectUrl;
       }
     },

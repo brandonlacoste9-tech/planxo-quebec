@@ -1,7 +1,6 @@
-import { useState } from "react";
-
 import { useLocale } from "@calcom/lib/hooks/useLocale";
 import { trpc } from "@calcom/trpc/react";
+import { useState } from "react";
 
 export type UseVerifyCodeReturnType = ReturnType<typeof useVerifyCode>;
 
@@ -17,8 +16,11 @@ export const useVerifyCode = ({ onSuccess }: UseVerifyCodeProps) => {
   const [value, setValue] = useState("");
   const [hasVerified, setHasVerified] = useState(false);
 
-  const verifyCodeMutationUserSessionRequired = { mutate: (..._args: unknown[]) => {}, mutateAsync: async () => ({}), isPending: false };
-
+  const verifyCodeMutationUserSessionRequired = {
+    mutate: (..._args: unknown[]) => {},
+    mutateAsync: async () => ({}),
+    isPending: false,
+  };
 
   const verifyCodeMutationUserSessionNotRequired = trpc.viewer.auth.verifyCodeUnAuthenticated.useMutation({
     onSuccess: (data) => {

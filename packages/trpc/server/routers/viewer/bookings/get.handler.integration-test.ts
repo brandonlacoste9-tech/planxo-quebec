@@ -1,5 +1,5 @@
-import prisma from "@calcom/prisma";
 import kysely from "@calcom/kysely";
+import prisma from "@calcom/prisma";
 import type { Booking, EventType, User } from "@calcom/prisma/client";
 import { BookingStatus } from "@calcom/prisma/enums";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";

@@ -111,4 +111,4 @@ export function bindModuleToClassOnToken<TClass extends new (deps: any) => any>(
     }
   };
 }
-export { createContainer, createModule, type Container, type Module, type ResolveFunction };
+export { type Container, createContainer, createModule, type Module, type ResolveFunction };

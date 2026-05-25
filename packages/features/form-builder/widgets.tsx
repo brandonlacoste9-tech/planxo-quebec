@@ -1,14 +1,10 @@
 "use client";
 
-import type { ChangeEvent } from "react";
-
-import { TextArea } from "@calcom/ui/components/form";
-import { TextField } from "@calcom/ui/components/form";
-
-import type { TextLikeComponentPropsRAQB, SelectLikeComponentPropsRAQB } from "./widget-types";
-
+import { TextArea, TextField } from "@calcom/ui/components/form";
 // Dynamic import for Select to avoid SSR issues
 import dynamic from "next/dynamic";
+import type { ChangeEvent } from "react";
+import type { SelectLikeComponentPropsRAQB, TextLikeComponentPropsRAQB } from "./widget-types";
 
 const Select = dynamic(
   async () => (await import("@calcom/ui/components/form")).SelectWithValidation
@@ -38,8 +34,16 @@ const TextAreaWidget = (props: TextLikeComponentPropsRAQB) => {
 };
 
 const TextWidget = (props: TextLikeComponentPropsRAQB) => {
-  const { value, noLabel, setValue, readOnly, placeholder, customProps, type = "text", ...remainingProps } =
-    props;
+  const {
+    value,
+    noLabel,
+    setValue,
+    readOnly,
+    placeholder,
+    customProps,
+    type = "text",
+    ...remainingProps
+  } = props;
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;
     setValue(val);

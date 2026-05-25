@@ -21,8 +21,8 @@ import {
   useDataTableState,
 } from "./contexts";
 
-export type { ActiveFiltersValidatorState };
 export type { ActiveFiltersValidator } from "./contexts";
+export type { ActiveFiltersValidatorState };
 
 export type DataTableContextType = {
   tableIdentifier: string;

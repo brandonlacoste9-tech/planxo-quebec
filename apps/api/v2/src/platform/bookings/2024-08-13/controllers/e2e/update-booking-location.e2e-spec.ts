@@ -78,14 +78,14 @@ import { randomString } from "test/utils/randomString";
 import { mockThrottlerGuard } from "test/utils/withNoThrottler";
 import { AppModule } from "@/app.module";
 import { bootstrap } from "@/bootstrap";
-import { UpdateBookingLocationOutput_2024_08_13 } from "@/platform/bookings/2024-08-13/outputs/update-location.output";
-import { CreateScheduleInput_2024_04_15 } from "@/platform/schedules/schedules_2024_04_15/inputs/create-schedule.input";
-import { SchedulesModule_2024_04_15 } from "@/platform/schedules/schedules_2024_04_15/schedules.module";
-import { SchedulesService_2024_04_15 } from "@/platform/schedules/schedules_2024_04_15/services/schedules.service";
 import { PermissionsGuard } from "@/modules/auth/guards/permissions/permissions.guard";
 import { PrismaModule } from "@/modules/prisma/prisma.module";
 import { PrismaWriteService } from "@/modules/prisma/prisma-write.service";
 import { UsersModule } from "@/modules/users/users.module";
+import { UpdateBookingLocationOutput_2024_08_13 } from "@/platform/bookings/2024-08-13/outputs/update-location.output";
+import { CreateScheduleInput_2024_04_15 } from "@/platform/schedules/schedules_2024_04_15/inputs/create-schedule.input";
+import { SchedulesModule_2024_04_15 } from "@/platform/schedules/schedules_2024_04_15/schedules.module";
+import { SchedulesService_2024_04_15 } from "@/platform/schedules/schedules_2024_04_15/services/schedules.service";
 
 type TestUser = {
   id: number;

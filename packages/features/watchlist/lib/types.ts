@@ -1,6 +1,6 @@
-import { WatchlistAction, WatchlistType, WatchlistSource } from "@calcom/prisma/enums";
+import { WatchlistAction, WatchlistSource, WatchlistType } from "@calcom/prisma/enums";
 
-export { WatchlistAction, WatchlistType, WatchlistSource };
+export { WatchlistAction, WatchlistSource, WatchlistType };
 
 export interface Watchlist {
   id: string;

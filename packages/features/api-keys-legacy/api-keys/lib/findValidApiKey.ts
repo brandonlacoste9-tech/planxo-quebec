@@ -1,3 +1,4 @@
+import process from "node:process";
 import { hashAPIKey } from "@calcom/features/api-keys-legacy/api-keys/lib/apiKeys";
 import prisma from "@calcom/prisma";
 

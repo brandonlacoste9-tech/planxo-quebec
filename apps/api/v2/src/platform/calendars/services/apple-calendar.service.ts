@@ -1,13 +1,11 @@
-import { CredentialSyncCalendarApp } from "@/platform/calendars/calendars.interface";
-import { CalendarsService } from "@/platform/calendars/services/calendars.service";
-import { CredentialsRepository } from "@/modules/credentials/credentials.repository";
-import { BadRequestException, UnauthorizedException } from "@nestjs/common";
-import { Injectable } from "@nestjs/common";
-
-import { SUCCESS_STATUS, APPLE_CALENDAR_TYPE, APPLE_CALENDAR_ID } from "@calcom/platform-constants";
-import { symmetricEncrypt, symmetricDecrypt } from "@calcom/platform-libraries";
+import { APPLE_CALENDAR_ID, APPLE_CALENDAR_TYPE, SUCCESS_STATUS } from "@calcom/platform-constants";
+import { symmetricDecrypt, symmetricEncrypt } from "@calcom/platform-libraries";
 import { BuildCalendarService } from "@calcom/platform-libraries/app-store";
 import type { Credential } from "@calcom/prisma/client";
+import { BadRequestException, Injectable, UnauthorizedException } from "@nestjs/common";
+import { CredentialsRepository } from "@/modules/credentials/credentials.repository";
+import { CredentialSyncCalendarApp } from "@/platform/calendars/calendars.interface";
+import { CalendarsService } from "@/platform/calendars/services/calendars.service";
 
 @Injectable()
 export class AppleCalendarService implements CredentialSyncCalendarApp {
@@ -88,13 +86,13 @@ export class AppleCalendarService implements CredentialSyncCalendarApp {
         }
       );
 
-      if (!!hasCalendarWithGivenCredentials && hasMatchingUsernameAndPassword) {
+      if (hasCalendarWithGivenCredentials && hasMatchingUsernameAndPassword) {
         return {
           status: SUCCESS_STATUS,
         };
       }
 
-      if (!!hasCalendarWithGivenCredentials && !hasMatchingUsernameAndPassword) {
+      if (hasCalendarWithGivenCredentials && !hasMatchingUsernameAndPassword) {
         await this.credentialRepository.upsertUserAppCredential(
           APPLE_CALENDAR_TYPE,
           symmetricEncrypt(JSON.stringify({ username, password }), process.env.CALENDSO_ENCRYPTION_KEY || ""),

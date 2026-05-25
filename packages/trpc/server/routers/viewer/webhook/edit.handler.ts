@@ -1,14 +1,12 @@
 import {
-  updateTriggerForExistingBookings,
-  deleteWebhookScheduledTriggers,
   cancelNoShowTasksForBooking,
+  deleteWebhookScheduledTriggers,
+  updateTriggerForExistingBookings,
 } from "@calcom/features/webhooks/lib/scheduleTrigger";
 import { validateUrlForSSRFSync } from "@calcom/lib/ssrfProtection";
 import { prisma } from "@calcom/prisma";
 import type { TrpcSessionUser } from "@calcom/trpc/server/types";
-
 import { TRPCError } from "@trpc/server";
-
 import type { TEditInputSchema } from "./edit.schema";
 
 type EditOptions = {
@@ -49,7 +47,7 @@ export const editHandler = async ({ input, ctx }: EditOptions) => {
     }
   }
 
-  const updatedWebhook= await prisma.webhook.update({
+  const updatedWebhook = await prisma.webhook.update({
     where: {
       id,
     },

@@ -59,7 +59,8 @@
     "./components/table/TableNew": "./components/table/TableNew.tsx",
     "./components/app-list-card/AppListCard": "./components/app-list-card/AppListCard.tsx",
     "./components/section": "./components/section/index.ts",
-    "./components/segmented-control": "./components/segmented-control/index.ts"
+    "./components/segmented-control": "./components/segmented-control/index.ts",
+    "./components/quebec/consent-banner": "./components/quebec/consent-banner.tsx"
   },
   "license": "MIT",
   "scripts": {

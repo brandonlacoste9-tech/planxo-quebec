@@ -1,7 +1,6 @@
 import { EventTypeHostService } from "@calcom/features/host/services/EventTypeHostService";
 import type { PaginatedAssignmentChildrenResponse } from "@calcom/features/host/services/IEventTypeHostService";
 import type { PrismaClient } from "@calcom/prisma/client";
-
 import type { TrpcSessionUser } from "../../../types";
 import type { TGetChildrenForAssignmentInputSchema } from "./getChildrenForAssignment.schema";
 
@@ -13,8 +12,8 @@ type GetChildrenForAssignmentInput = {
   input: TGetChildrenForAssignmentInputSchema;
 };
 
-export type { PaginatedAssignmentChildrenResponse as GetChildrenForAssignmentResponse };
 export type { AssignmentChild } from "@calcom/features/host/services/IEventTypeHostService";
+export type { PaginatedAssignmentChildrenResponse as GetChildrenForAssignmentResponse };
 
 export const getChildrenForAssignmentHandler = async ({
   ctx,

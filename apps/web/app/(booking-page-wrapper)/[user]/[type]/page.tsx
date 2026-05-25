@@ -1,5 +1,5 @@
-import { WEBAPP_URL } from "@calcom/lib/constants";
 import { loadTranslations } from "@calcom/i18n/server";
+import { WEBAPP_URL } from "@calcom/lib/constants";
 import { buildLegacyCtx, decodeParams } from "@lib/buildLegacyCtx";
 import { getServerSideProps } from "@server/lib/[user]/[type]/getServerSideProps";
 import type { PageProps } from "app/_types";
@@ -53,7 +53,7 @@ export const generateMetadata = async ({ params, searchParams }: PageProps): Pro
   const decodedParams = decodeParams(await params);
   const metadata = await generateMeetingMetadata(
     meeting,
-    (t) => `${rescheduleUid && !!booking ? t("reschedule") : ""} ${title} | ${profileName}`,
+    (t) => `${rescheduleUid && booking ? t("reschedule") : ""} ${title} | ${profileName}`,
     (t) => `${rescheduleUid ? t("reschedule") : ""} ${title}`,
     isBrandingHidden,
     WEBAPP_URL,

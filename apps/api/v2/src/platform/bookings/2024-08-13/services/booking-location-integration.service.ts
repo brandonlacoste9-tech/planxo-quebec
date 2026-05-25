@@ -10,6 +10,7 @@ import type {
 } from "@calcom/platform-types/bookings/2024-08-13/outputs/booking.output";
 import type { Booking, Prisma } from "@calcom/prisma/client";
 import { BadRequestException, Injectable, Logger, NotFoundException } from "@nestjs/common";
+import type { ApiAuthGuardUser } from "@/modules/auth/strategies/api-auth/api-auth.strategy";
 import { BookingsRepository_2024_08_13 } from "@/platform/bookings/2024-08-13/repositories/bookings.repository";
 import { BookingLocationCalendarSyncService_2024_08_13 } from "@/platform/bookings/2024-08-13/services/booking-location-calendar-sync.service";
 import { BookingLocationCredentialService_2024_08_13 } from "@/platform/bookings/2024-08-13/services/booking-location-credential.service";
@@ -17,7 +18,6 @@ import { BookingVideoService_2024_08_13 } from "@/platform/bookings/2024-08-13/s
 import { BookingsService_2024_08_13 } from "@/platform/bookings/2024-08-13/services/bookings.service";
 import { InputBookingsService_2024_08_13 } from "@/platform/bookings/2024-08-13/services/input.service";
 import { apiToInternalintegrationsMapping } from "@/platform/event-types/event-types_2024_06_14/transformers/api-to-internal/locations";
-import type { ApiAuthGuardUser } from "@/modules/auth/strategies/api-auth/api-auth.strategy";
 
 export type BookingLocationResponse =
   | BookingOutput_2024_08_13

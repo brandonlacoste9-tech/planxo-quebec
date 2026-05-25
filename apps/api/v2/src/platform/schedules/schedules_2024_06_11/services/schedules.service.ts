@@ -5,11 +5,11 @@ import type {
 } from "@calcom/platform-types";
 import type { Schedule } from "@calcom/prisma/client";
 import { BadRequestException, ForbiddenException, Injectable, NotFoundException } from "@nestjs/common";
+import { UsersRepository } from "@/modules/users/users.repository";
 import { EventTypesRepository_2024_06_14 } from "@/platform/event-types/event-types_2024_06_14/event-types.repository";
 import { SchedulesRepository_2024_06_11 } from "@/platform/schedules/schedules_2024_06_11/schedules.repository";
 import { InputSchedulesService_2024_06_11 } from "@/platform/schedules/schedules_2024_06_11/services/input-schedules.service";
 import { OutputSchedulesService_2024_06_11 } from "@/platform/schedules/schedules_2024_06_11/services/output-schedules.service";
-import { UsersRepository } from "@/modules/users/users.repository";
 
 @Injectable()
 export class SchedulesService_2024_06_11 {

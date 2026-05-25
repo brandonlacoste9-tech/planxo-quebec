@@ -451,9 +451,7 @@ export class FeatureOptInService implements IFeatureOptInService {
       },
     });
 
-    const nonOrgAdminTeams = adminMemberships
-      .map((m) => m.team)
-      .filter((team) => !team.isOrganization);
+    const nonOrgAdminTeams = adminMemberships.map((m) => m.team).filter((team) => !team.isOrganization);
     const adminTeamIds = nonOrgAdminTeams.map((team) => team.id);
     const adminTeamNames = nonOrgAdminTeams.map((team) => ({ id: team.id, name: team.name }));
 
@@ -521,6 +519,5 @@ export class FeatureOptInService implements IFeatureOptInService {
   }
 }
 
-export type { FeatureOptInEligibilityStatus };
-export type { IFeatureOptInServiceDeps };
 export type { FeatureOptInEligibilityResult, UserRoleContext } from "./IFeatureOptInService";
+export type { FeatureOptInEligibilityStatus, IFeatureOptInServiceDeps };

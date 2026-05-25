@@ -1,9 +1,8 @@
 "use client";
 
+import classNames from "@calcom/ui/classNames";
 import * as HoverCardPrimitive from "@radix-ui/react-hover-card";
 import * as React from "react";
-
-import classNames from "@calcom/ui/classNames";
 
 const HoverCard = HoverCardPrimitive.Root;
 
@@ -28,4 +27,4 @@ const HoverCardContent = React.forwardRef<
 ));
 HoverCardContent.displayName = HoverCardPrimitive.Content.displayName;
 
-export { HoverCard, HoverCardTrigger, HoverCardContent, HoverCardPortal };
+export { HoverCard, HoverCardContent, HoverCardPortal, HoverCardTrigger };

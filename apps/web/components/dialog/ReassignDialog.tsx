@@ -1,10 +1,3 @@
-import { useAutoAnimate } from "@formkit/auto-animate/react";
-import { zodResolver } from "@hookform/resolvers/zod";
-import type { Dispatch, SetStateAction } from "react";
-import { useMemo, useState } from "react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-
 import { Dialog } from "@calcom/features/components/controlled-dialog";
 import { ErrorCode } from "@calcom/lib/errorCodes";
 import { useDebounce } from "@calcom/lib/hooks/useDebounce";
@@ -14,15 +7,21 @@ import { trpc } from "@calcom/trpc/react";
 import classNames from "@calcom/ui/classNames";
 import { Button } from "@calcom/ui/components/button";
 import {
+  ConfirmationDialogContent,
+  DialogClose,
   DialogContent,
   DialogFooter,
-  DialogClose,
-  ConfirmationDialogContent,
 } from "@calcom/ui/components/dialog";
-import { TextAreaField, Form, Label, Input } from "@calcom/ui/components/form";
+import { Form, Input, Label, TextAreaField } from "@calcom/ui/components/form";
 import { RadioAreaGroup as RadioArea } from "@calcom/ui/components/radio";
 import { showToast } from "@calcom/ui/components/toast";
 import { CheckIcon, LoaderIcon } from "@coss/ui/icons";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import type { Dispatch, SetStateAction } from "react";
+import { useMemo, useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
 enum ReassignType {
   AUTO = "auto",
@@ -77,21 +76,39 @@ export const ReassignDialog = ({
   const debouncedSearch = useDebounce(searchTerm, 500);
 
   const managedEventQuery: {
-    data: { pages: { items: { id: number; name: string | null; email: string; status: string }[] }[] } | undefined;
+    data:
+      | { pages: { items: { id: number; name: string | null; email: string; status: string }[] }[] }
+      | undefined;
     fetchNextPage: () => void;
     hasNextPage: boolean;
     isFetching: boolean;
     isFetchingNextPage: boolean;
-  } = { data: undefined, fetchNextPage: () => {}, hasNextPage: false, isFetching: false, isFetchingNextPage: false };
+  } = {
+    data: undefined,
+    fetchNextPage: () => {},
+    hasNextPage: false,
+    isFetching: false,
+    isFetchingNextPage: false,
+  };
 
-  const roundRobinQuery: typeof managedEventQuery = { data: undefined, fetchNextPage: () => {}, hasNextPage: false, isFetching: false, isFetchingNextPage: false };
+  const roundRobinQuery: typeof managedEventQuery = {
+    data: undefined,
+    fetchNextPage: () => {},
+    hasNextPage: false,
+    isFetching: false,
+    isFetchingNextPage: false,
+  };
 
   const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage } = isManagedEvent
     ? managedEventQuery
     : roundRobinQuery;
 
   const allRows = useMemo(() => {
-    return data?.pages.flatMap((page: { items: { id: number; name: string | null; email: string; status: string }[] }) => page.items) ?? [];
+    return (
+      data?.pages.flatMap(
+        (page: { items: { id: number; name: string | null; email: string; status: string }[] }) => page.items
+      ) ?? []
+    );
   }, [data]);
 
   const teamMemberOptions = useMemo(() => {
@@ -115,17 +132,29 @@ export const ReassignDialog = ({
     },
   });
 
-  const roundRobinReassignMutation = { mutate: (..._args: unknown[]) => {}, mutateAsync: async () => ({}), isPending: false };
+  const roundRobinReassignMutation = {
+    mutate: (..._args: unknown[]) => {},
+    mutateAsync: async () => ({}),
+    isPending: false,
+  };
 
+  const managedEventReassignMutation = {
+    mutate: (..._args: unknown[]) => {},
+    mutateAsync: async () => ({}),
+    isPending: false,
+  };
 
-  const managedEventReassignMutation = { mutate: (..._args: unknown[]) => {}, mutateAsync: async () => ({}), isPending: false };
+  const roundRobinManualReassignMutation = {
+    mutate: (..._args: unknown[]) => {},
+    mutateAsync: async () => ({}),
+    isPending: false,
+  };
 
-
-  const roundRobinManualReassignMutation = { mutate: (..._args: unknown[]) => {}, mutateAsync: async () => ({}), isPending: false };
-
-
-  const managedEventManualReassignMutation = { mutate: (..._args: unknown[]) => {}, mutateAsync: async () => ({}), isPending: false };
-
+  const managedEventManualReassignMutation = {
+    mutate: (..._args: unknown[]) => {},
+    mutateAsync: async () => ({}),
+    isPending: false,
+  };
 
   const [confirmationModal, setConfirmationModal] = useState<{
     show: boolean;

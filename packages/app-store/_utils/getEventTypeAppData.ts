@@ -1,8 +1,6 @@
-import type { z } from "zod";
-
 import type { eventTypeMetaDataSchemaWithTypedApps } from "@calcom/app-store/zod-utils";
 import type { BookerEventForAppData } from "@calcom/features/bookings/types.server";
-
+import type { z } from "zod";
 import type { CommonAppData } from "./commonAppDataType";
 
 export type EventTypeApps = NonNullable<

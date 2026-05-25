@@ -11,6 +11,9 @@ Sentry.init({
   dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
   sampleRate: parseFloat(process.env.SENTRY_SAMPLE_RATE ?? "1.0") || 1.0,
   tracesSampleRate: parseFloat(process.env.SENTRY_TRACES_SAMPLE_RATE ?? "0.0") || 0.0,
+  // httpIntegration and prismaIntegration are Node.js-only — safe here because
+  // this file is only ever loaded via instrumentation.node.ts, which the edge
+  // bundler never processes.
   integrations: [Sentry.prismaIntegration(), Sentry.httpIntegration()],
   beforeSend(event) {
     event.tags = {

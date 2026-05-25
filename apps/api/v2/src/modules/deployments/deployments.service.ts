@@ -1,7 +1,7 @@
-import { DeploymentsRepository } from "@/modules/deployments/deployments.repository";
-import { RedisService } from "@/modules/redis/redis.service";
 import { Injectable } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
+import { DeploymentsRepository } from "@/modules/deployments/deployments.repository";
+import { RedisService } from "@/modules/redis/redis.service";
 
 @Injectable()
 export class DeploymentsService {

@@ -54,4 +54,5 @@ const Steps = (props: StepsProps) => {
     </div>
   );
 };
+
 export { Steps };

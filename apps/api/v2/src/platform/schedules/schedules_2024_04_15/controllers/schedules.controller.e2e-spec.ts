@@ -11,15 +11,15 @@ import { randomString } from "test/utils/randomString";
 import { withApiAuth } from "test/utils/withApiAuth";
 import { AppModule } from "@/app.module";
 import { bootstrap } from "@/bootstrap";
+import { PermissionsGuard } from "@/modules/auth/guards/permissions/permissions.guard";
+import { PrismaModule } from "@/modules/prisma/prisma.module";
+import { TokensModule } from "@/modules/tokens/tokens.module";
+import { UsersModule } from "@/modules/users/users.module";
 import { CreateScheduleInput_2024_04_15 } from "@/platform/schedules/schedules_2024_04_15/inputs/create-schedule.input";
 import { CreateScheduleOutput_2024_04_15 } from "@/platform/schedules/schedules_2024_04_15/outputs/create-schedule.output";
 import { GetSchedulesOutput_2024_04_15 } from "@/platform/schedules/schedules_2024_04_15/outputs/get-schedules.output";
 import { UpdateScheduleOutput_2024_04_15 } from "@/platform/schedules/schedules_2024_04_15/outputs/update-schedule.output";
 import { SchedulesModule_2024_04_15 } from "@/platform/schedules/schedules_2024_04_15/schedules.module";
-import { PermissionsGuard } from "@/modules/auth/guards/permissions/permissions.guard";
-import { PrismaModule } from "@/modules/prisma/prisma.module";
-import { TokensModule } from "@/modules/tokens/tokens.module";
-import { UsersModule } from "@/modules/users/users.module";
 
 describe("Schedules Endpoints", () => {
   describe("User Authentication", () => {

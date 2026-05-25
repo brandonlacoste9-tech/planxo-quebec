@@ -1,11 +1,10 @@
-import { prisma } from "@calcom/prisma";
-import type { PrismaClient } from "@calcom/prisma";
 import i18nMock from "@calcom/testing/lib/__mocks__/libServerI18n";
+import type { PrismaClient } from "@calcom/prisma";
+import { prisma } from "@calcom/prisma";
 
 // import { mockNoTranslations } from "@calcom/testing/lib/bookingScenario/bookingScenario";
 
-import { describe, test, expect, beforeEach, afterEach, vi } from "vitest";
-
+import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import { getRawEventType } from "./getEventTypeById";
 
 export function mockNoTranslations() {
@@ -31,9 +30,7 @@ describe("getRawEventType", () => {
     users: [],
   };
 
-  const createTestUser = async (overrides?: {
-    username?: string;
-  }) => {
+  const createTestUser = async (overrides?: { username?: string }) => {
     const timestamp = Date.now() + Math.random();
     const username = overrides?.username ?? `testuser-${timestamp}`;
     const user = await prisma.user.create({

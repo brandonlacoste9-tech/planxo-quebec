@@ -1,6 +1,7 @@
 import { EventTypeAppCard } from "@calcom/app-store/_components/EventTypeAppCardInterface";
 import type { EventTypeAppCardComponentProps } from "@calcom/app-store/types";
 import type { EventTypeAppsList } from "@calcom/app-store/utils";
+import useAppsData from "@calcom/features/apps/hooks/useAppsData";
 import type { EventTypeApps, EventTypeSetupProps, FormValues } from "@calcom/features/eventtypes/lib/types";
 import ServerTrans from "@calcom/lib/components/ServerTrans";
 import { useLocale } from "@calcom/lib/hooks/useLocale";
@@ -9,7 +10,6 @@ import { Alert } from "@calcom/ui/components/alert";
 import { Button } from "@calcom/ui/components/button";
 import { EmptyScreen } from "@calcom/ui/components/empty-screen";
 import { Section } from "@calcom/ui/components/section";
-import useAppsData from "@calcom/features/apps/hooks/useAppsData";
 import Link from "next/link";
 import { useFormContext } from "react-hook-form";
 

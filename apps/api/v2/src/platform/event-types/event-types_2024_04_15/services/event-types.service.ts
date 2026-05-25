@@ -1,3 +1,16 @@
+import {
+  createEventType,
+  EventTypesPublic,
+  getEventTypesPublic,
+  updateEventType,
+} from "@calcom/platform-libraries/event-types";
+import type { EventType } from "@calcom/prisma/client";
+import { BadRequestException, ForbiddenException, Injectable, NotFoundException } from "@nestjs/common";
+import { MembershipsRepository } from "@/modules/memberships/memberships.repository";
+import { PrismaWriteService } from "@/modules/prisma/prisma-write.service";
+import { SelectedCalendarsRepository } from "@/modules/selected-calendars/selected-calendars.repository";
+import { UsersService } from "@/modules/users/services/users.service";
+import { UsersRepository, UserWithProfile } from "@/modules/users/users.repository";
 import { DEFAULT_EVENT_TYPES } from "@/platform/event-types/event-types_2024_04_15/constants/constants";
 import { EventTypesRepository_2024_04_15 } from "@/platform/event-types/event-types_2024_04_15/event-types.repository";
 import { CreateEventTypeInput_2024_04_15 } from "@/platform/event-types/event-types_2024_04_15/inputs/create-event-type.input";
@@ -6,20 +19,6 @@ import { BaseField } from "@/platform/event-types/event-types_2024_04_15/inputs/
 import { UpdateEventTypeInput_2024_04_15 } from "@/platform/event-types/event-types_2024_04_15/inputs/update-event-type.input";
 import { EventTypeOutput } from "@/platform/event-types/event-types_2024_04_15/outputs/event-type.output";
 import { systemBeforeFieldEmail } from "@/platform/event-types/event-types_2024_06_14/transformers";
-import { MembershipsRepository } from "@/modules/memberships/memberships.repository";
-import { PrismaWriteService } from "@/modules/prisma/prisma-write.service";
-import { SelectedCalendarsRepository } from "@/modules/selected-calendars/selected-calendars.repository";
-import { UsersService } from "@/modules/users/services/users.service";
-import { UserWithProfile, UsersRepository } from "@/modules/users/users.repository";
-import { BadRequestException, ForbiddenException, Injectable, NotFoundException } from "@nestjs/common";
-
-import {
-  createEventType,
-  updateEventType,
-  EventTypesPublic,
-  getEventTypesPublic,
-} from "@calcom/platform-libraries/event-types";
-import type { EventType } from "@calcom/prisma/client";
 
 @Injectable()
 export class EventTypesService_2024_04_15 {
@@ -43,7 +42,7 @@ export class EventTypesService_2024_04_15 {
       ctx: {
         user: eventTypeUser,
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
+        // @ts-expect-error
         prisma: this.dbWrite.prisma,
       },
     });
@@ -149,7 +148,7 @@ export class EventTypesService_2024_04_15 {
       ctx: {
         user: eventTypeUser,
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
+        // @ts-expect-error
         prisma: this.dbWrite.prisma,
       },
     });

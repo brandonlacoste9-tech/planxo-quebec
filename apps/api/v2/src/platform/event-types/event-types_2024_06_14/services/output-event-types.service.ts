@@ -25,6 +25,7 @@ import type {
 } from "@calcom/prisma/client";
 import { Injectable } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
+import { ProfileMinimal, UsersService } from "@/modules/users/services/users.service";
 import {
   BookingFieldSchema,
   CustomField,
@@ -41,7 +42,6 @@ import {
   transformRequiresConfirmationInternalToApi,
   transformSeatsInternalToApi,
 } from "@/platform/event-types/event-types_2024_06_14/transformers";
-import { ProfileMinimal, UsersService } from "@/modules/users/services/users.service";
 
 type EventTypeUser = {
   id: number;

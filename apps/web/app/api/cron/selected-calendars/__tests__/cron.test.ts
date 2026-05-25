@@ -1,10 +1,8 @@
 import prismock from "@calcom/testing/lib/__mocks__/prisma";
 import "@calcom/lib/server/__mocks__/serviceAccountKey";
 
-import { describe, it, expect, beforeEach, vi } from "vitest";
-
 import { CalendarAppDelegationCredentialInvalidGrantError } from "@calcom/lib/CalendarAppError";
-
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { handleCreateSelectedCalendars, isSameEmail } from "../route";
 
 // Mock findUniqueDelegationCalendarCredential to actually query prismock

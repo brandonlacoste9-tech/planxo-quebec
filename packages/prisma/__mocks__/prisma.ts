@@ -1,6 +1,5 @@
 import { beforeEach } from "vitest";
 import { mockDeep, mockReset } from "vitest-mock-extended";
-
 import type { PrismaClient } from "../client";
 
 beforeEach(() => {
@@ -8,4 +7,5 @@ beforeEach(() => {
 });
 
 const prisma = mockDeep<PrismaClient>();
+
 export { prisma };

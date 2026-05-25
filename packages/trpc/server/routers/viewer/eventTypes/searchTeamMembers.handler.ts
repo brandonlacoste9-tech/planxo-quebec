@@ -1,7 +1,6 @@
 import { EventTypeHostService } from "@calcom/features/host/services/EventTypeHostService";
 import type { PaginatedTeamMembersResponse } from "@calcom/features/host/services/IEventTypeHostService";
 import type { PrismaClient } from "@calcom/prisma/client";
-
 import type { TrpcSessionUser } from "../../../types";
 import type { TSearchTeamMembersInputSchema } from "./searchTeamMembers.schema";
 
@@ -13,8 +12,8 @@ type SearchTeamMembersInput = {
   input: TSearchTeamMembersInputSchema;
 };
 
-export type { PaginatedTeamMembersResponse as SearchTeamMembersResponse };
 export type { TeamMemberSearchResult } from "@calcom/features/host/services/IEventTypeHostService";
+export type { PaginatedTeamMembersResponse as SearchTeamMembersResponse };
 
 export const searchTeamMembersHandler = async ({
   ctx,

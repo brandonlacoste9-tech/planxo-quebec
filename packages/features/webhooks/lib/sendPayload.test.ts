@@ -1,5 +1,4 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
-
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { WebhookVersion } from "./interface/IWebhookRepository";
 import sendPayload from "./sendPayload";
 
@@ -108,6 +107,4 @@ describe("sendPayload", () => {
       expect(options.headers["X-Cal-Webhook-Version"]).toBe("2021-10-20");
     });
   });
-
-
 });

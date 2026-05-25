@@ -16,39 +16,28 @@ import {
   sendChangeOfEmailVerification,
   sendEmailVerificationByCode,
 } from "@calcom/features/auth/lib/verifyEmail";
+
 // sendSignupToOrganizationEmail removed (EE/org feature)
 // verifyEmailCodeHandler removed (EE/workflows feature)
 
-export { AttendeeVerifyEmail };
-
-export { AttendeeAddGuestsEmail };
-
-export { OrganizerAddGuestsEmail };
-
-export { AttendeeScheduledEmail };
-
-export { OrganizerScheduledEmail };
-
-export { AttendeeDeclinedEmail };
-
-export { AttendeeCancelledEmail };
-
-export { OrganizerCancelledEmail };
-
-export { OrganizerReassignedEmail };
-
-export { OrganizerRescheduledEmail };
-
-export { AttendeeRescheduledEmail };
-
-export { AttendeeUpdatedEmail };
-
-export { OrganizerRequestEmail };
-
-export { AttendeeRequestEmail };
-
-export { sendEmailVerificationByCode };
-export { sendChangeOfEmailVerification };
+export {
+  AttendeeAddGuestsEmail,
+  AttendeeCancelledEmail,
+  AttendeeDeclinedEmail,
+  AttendeeRequestEmail,
+  AttendeeRescheduledEmail,
+  AttendeeScheduledEmail,
+  AttendeeUpdatedEmail,
+  AttendeeVerifyEmail,
+  OrganizerAddGuestsEmail,
+  OrganizerCancelledEmail,
+  OrganizerReassignedEmail,
+  OrganizerRequestEmail,
+  OrganizerRescheduledEmail,
+  OrganizerScheduledEmail,
+  sendChangeOfEmailVerification,
+  sendEmailVerificationByCode,
+};
 
 // sendSignupToOrganizationEmail stub — org feature removed
 export async function sendSignupToOrganizationEmail(_args: {

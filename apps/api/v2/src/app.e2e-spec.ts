@@ -12,11 +12,11 @@ import { RateLimitRepositoryFixture } from "test/fixtures/repository/rate-limit.
 import { UserRepositoryFixture } from "test/fixtures/repository/users.repository.fixture";
 import { randomString } from "test/utils/randomString";
 import { AppModule } from "@/app.module";
-import { SchedulesModule_2024_04_15 } from "@/platform/schedules/schedules_2024_04_15/schedules.module";
 import { CustomThrottlerGuard } from "@/lib/throttler-guard";
 import { PrismaModule } from "@/modules/prisma/prisma.module";
 import { TokensModule } from "@/modules/tokens/tokens.module";
 import { UsersModule } from "@/modules/users/users.module";
+import { SchedulesModule_2024_04_15 } from "@/platform/schedules/schedules_2024_04_15/schedules.module";
 
 describe("AppController", () => {
   describe("Rate limiting", () => {

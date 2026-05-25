@@ -785,5 +785,5 @@ function UserListTableContent({
   );
 }
 
-export { UserListTable };
 export type { UserListTableProps };
+export { UserListTable };

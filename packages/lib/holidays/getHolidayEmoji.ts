@@ -98,4 +98,4 @@ export function getHolidayEmoji(holidayName: string): string {
   return DEFAULT_HOLIDAY_EMOJI;
 }
 
-export { HOLIDAY_EMOJI_MAP, DEFAULT_HOLIDAY_EMOJI };
+export { DEFAULT_HOLIDAY_EMOJI, HOLIDAY_EMOJI_MAP };
