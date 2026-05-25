@@ -44,6 +44,19 @@ import {
   getSchemaPath,
 } from "@nestjs/swagger";
 import { Request } from "express";
+import { BookingPbacGuard } from "@/platform/bookings/2024-08-13/guards/booking-pbac.guard";
+import { BookingUidGuard } from "@/platform/bookings/2024-08-13/guards/booking-uid.guard";
+import { BookingReferencesFilterInput_2024_08_13 } from "@/platform/bookings/2024-08-13/inputs/booking-references-filter.input";
+import { BookingReferencesOutput_2024_08_13 } from "@/platform/bookings/2024-08-13/outputs/booking-references.output";
+import { CalendarLinksOutput_2024_08_13 } from "@/platform/bookings/2024-08-13/outputs/calendar-links.output";
+import { CancelBookingOutput_2024_08_13 } from "@/platform/bookings/2024-08-13/outputs/cancel-booking.output";
+import { CreateBookingOutput_2024_08_13 } from "@/platform/bookings/2024-08-13/outputs/create-booking.output";
+import { MarkAbsentBookingOutput_2024_08_13 } from "@/platform/bookings/2024-08-13/outputs/mark-absent.output";
+import { ReassignBookingOutput_2024_08_13 } from "@/platform/bookings/2024-08-13/outputs/reassign-booking.output";
+import { RescheduleBookingOutput_2024_08_13 } from "@/platform/bookings/2024-08-13/outputs/reschedule-booking.output";
+import { BookingReferencesService_2024_08_13 } from "@/platform/bookings/2024-08-13/services/booking-references.service";
+import { BookingsService_2024_08_13 } from "@/platform/bookings/2024-08-13/services/bookings.service";
+import { CalVideoService } from "@/platform/bookings/2024-08-13/services/cal-video.service";
 import { VERSION_2024_08_13, VERSION_2024_08_13_VALUE } from "@/lib/api-versions";
 import {
   API_KEY_OR_ACCESS_TOKEN_HEADER,
@@ -63,19 +76,6 @@ import { OptionalApiAuthGuard } from "@/modules/auth/guards/optional-api-auth/op
 import { PermissionsGuard } from "@/modules/auth/guards/permissions/permissions.guard";
 import { ApiAuthGuardUser } from "@/modules/auth/strategies/api-auth/api-auth.strategy";
 import { UsersService } from "@/modules/users/services/users.service";
-import { BookingPbacGuard } from "@/platform/bookings/2024-08-13/guards/booking-pbac.guard";
-import { BookingUidGuard } from "@/platform/bookings/2024-08-13/guards/booking-uid.guard";
-import { BookingReferencesFilterInput_2024_08_13 } from "@/platform/bookings/2024-08-13/inputs/booking-references-filter.input";
-import { BookingReferencesOutput_2024_08_13 } from "@/platform/bookings/2024-08-13/outputs/booking-references.output";
-import { CalendarLinksOutput_2024_08_13 } from "@/platform/bookings/2024-08-13/outputs/calendar-links.output";
-import { CancelBookingOutput_2024_08_13 } from "@/platform/bookings/2024-08-13/outputs/cancel-booking.output";
-import { CreateBookingOutput_2024_08_13 } from "@/platform/bookings/2024-08-13/outputs/create-booking.output";
-import { MarkAbsentBookingOutput_2024_08_13 } from "@/platform/bookings/2024-08-13/outputs/mark-absent.output";
-import { ReassignBookingOutput_2024_08_13 } from "@/platform/bookings/2024-08-13/outputs/reassign-booking.output";
-import { RescheduleBookingOutput_2024_08_13 } from "@/platform/bookings/2024-08-13/outputs/reschedule-booking.output";
-import { BookingReferencesService_2024_08_13 } from "@/platform/bookings/2024-08-13/services/booking-references.service";
-import { BookingsService_2024_08_13 } from "@/platform/bookings/2024-08-13/services/bookings.service";
-import { CalVideoService } from "@/platform/bookings/2024-08-13/services/cal-video.service";
 
 @Controller({
   path: "/v2/bookings",

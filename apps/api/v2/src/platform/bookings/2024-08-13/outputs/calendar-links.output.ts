@@ -1,6 +1,7 @@
-import { ERROR_STATUS, SUCCESS_STATUS } from "@calcom/platform-constants";
 import { ApiProperty } from "@nestjs/swagger";
 import { IsEnum, IsString } from "class-validator";
+
+import { SUCCESS_STATUS, ERROR_STATUS } from "@calcom/platform-constants";
 
 export class CalendarLink {
   @IsString()

@@ -15,6 +15,7 @@ import {
   Version,
 } from "@nestjs/common";
 import { ApiExcludeController as DocsExcludeController, ApiTags as DocsTags } from "@nestjs/swagger";
+import { GetEventTypePublicOutput } from "@/platform/event-types/event-types_2024_04_15/outputs/get-event-type-public.output";
 import { API_VERSIONS_VALUES } from "@/lib/api-versions";
 import {
   BulkUpdateEventTypeToDefaultLocationDto,
@@ -25,7 +26,6 @@ import { EventTypesAtomService } from "@/modules/atoms/services/event-types-atom
 import { GetUser } from "@/modules/auth/decorators/get-user/get-user.decorator";
 import { ApiAuthGuard } from "@/modules/auth/guards/api-auth/api-auth.guard";
 import { UserWithProfile } from "@/modules/users/users.repository";
-import { GetEventTypePublicOutput } from "@/platform/event-types/event-types_2024_04_15/outputs/get-event-type-public.output";
 
 /*
 Event-types endpoints for atoms, split from AtomsController for clarity and maintainability.
@@ -158,4 +158,5 @@ export class AtomsEventTypesController {
       data: eventType,
     };
   }
+
 }

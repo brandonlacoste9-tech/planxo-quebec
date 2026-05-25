@@ -52,7 +52,6 @@ export class ScheduleService {
         date: override.start,
         startTime: override.start,
         endTime: override.end,
-        days: [],
       })),
     ];
 

@@ -6,7 +6,9 @@
  * (cast to the real type) that matches what UnifiedCalendarsFreebusyService actually reads.
  */
 
-import { GOOGLE_CALENDAR_TYPE } from "@calcom/platform-constants";
+import {
+  GOOGLE_CALENDAR_TYPE,
+} from "@calcom/platform-constants";
 import type { ConnectedDestinationCalendars } from "@calcom/platform-libraries";
 import { Test, TestingModule } from "@nestjs/testing";
 import { UnifiedCalendarsFreebusyService } from "./unified-calendars-freebusy.service";

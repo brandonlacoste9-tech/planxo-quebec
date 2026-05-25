@@ -1,6 +1,7 @@
-import type { User } from "@calcom/prisma/client";
-import { Injectable } from "@nestjs/common";
 import { UsersRepository, UserWithProfile } from "@/modules/users/users.repository";
+import { Injectable } from "@nestjs/common";
+
+import type { User } from "@calcom/prisma/client";
 
 export type ProfileMinimal = {
   id: number;
@@ -27,7 +28,7 @@ export class UsersService {
     const users = await Promise.all(
       usernames.map((username) => this.usersRepository.findByUsername(username, orgSlug, orgId))
     );
-
+    
     return users;
   }
 

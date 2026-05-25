@@ -1,4 +1,5 @@
 import { ConfigService } from "@nestjs/config";
+
 import { OutputEventTypesService_2024_06_14 } from "./output-event-types.service";
 import { UsersService } from "@/modules/users/services/users.service";
 import { UsersRepository } from "@/modules/users/users.repository";
@@ -278,3 +279,4 @@ describe("OutputEventTypesService_2024_06_14", () => {
     });
   });
 });
+

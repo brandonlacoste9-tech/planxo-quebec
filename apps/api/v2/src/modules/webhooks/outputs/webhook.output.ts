@@ -1,8 +1,9 @@
-import { ERROR_STATUS, SUCCESS_STATUS } from "@calcom/platform-constants";
-import { WebhookTriggerEvents } from "@calcom/platform-libraries";
 import { ApiProperty } from "@nestjs/swagger";
 import { Expose, Type } from "class-transformer";
-import { IsArray, IsBoolean, IsEnum, IsInt, IsString, ValidateNested } from "class-validator";
+import { IsBoolean, IsEnum, IsInt, IsString, ValidateNested, IsArray } from "class-validator";
+
+import { SUCCESS_STATUS, ERROR_STATUS } from "@calcom/platform-constants";
+import { WebhookTriggerEvents } from "@calcom/platform-libraries";
 
 export class WebhookOutputDto {
   @IsInt()

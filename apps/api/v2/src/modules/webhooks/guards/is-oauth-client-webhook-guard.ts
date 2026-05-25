@@ -1,4 +1,7 @@
-import type { PlatformOAuthClient, Webhook } from "@calcom/prisma/client";
+import { ApiAuthGuardUser } from "@/modules/auth/strategies/api-auth/api-auth.strategy";
+import { OAuthClientRepository } from "@/modules/oauth-clients/oauth-client.repository";
+import { UsersService } from "@/modules/users/services/users.service";
+import { WebhooksService } from "@/modules/webhooks/services/webhooks.service";
 import {
   BadRequestException,
   CanActivate,
@@ -8,10 +11,8 @@ import {
   NotFoundException,
 } from "@nestjs/common";
 import { Request } from "express";
-import { ApiAuthGuardUser } from "@/modules/auth/strategies/api-auth/api-auth.strategy";
-import { OAuthClientRepository } from "@/modules/oauth-clients/oauth-client.repository";
-import { UsersService } from "@/modules/users/services/users.service";
-import { WebhooksService } from "@/modules/webhooks/services/webhooks.service";
+
+import type { PlatformOAuthClient, Webhook } from "@calcom/prisma/client";
 
 @Injectable()
 export class IsOAuthClientWebhookGuard implements CanActivate {

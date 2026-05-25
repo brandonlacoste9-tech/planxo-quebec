@@ -16,7 +16,6 @@ import {
 } from "@calcom/platform-types";
 import { BookerLayouts } from "@calcom/prisma/zod-utils";
 import { BadRequestException, Injectable } from "@nestjs/common";
-import { UserWithProfile } from "@/modules/users/users.repository";
 import { ConnectedCalendarsData } from "@/platform/calendars/outputs/connected-calendars.output";
 import { CalendarsService } from "@/platform/calendars/services/calendars.service";
 import { EventTypesRepository_2024_06_14 } from "@/platform/event-types/event-types_2024_06_14/event-types.repository";
@@ -43,6 +42,7 @@ import {
   transformRecurrenceApiToInternal,
   transformSeatsApiToInternal,
 } from "@/platform/event-types/event-types_2024_06_14/transformers";
+import { UserWithProfile } from "@/modules/users/users.repository";
 
 interface ValidationContext {
   eventTypeId?: number;

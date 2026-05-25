@@ -1,7 +1,8 @@
-import { ERROR_STATUS, SUCCESS_STATUS } from "@calcom/platform-constants";
 import { ApiProperty } from "@nestjs/swagger";
 import { Expose, Type } from "class-transformer";
-import { IsBoolean, IsEnum, IsInt, IsString, ValidateNested } from "class-validator";
+import { IsString, ValidateNested, IsEnum, IsInt, IsBoolean } from "class-validator";
+
+import { ERROR_STATUS, SUCCESS_STATUS } from "@calcom/platform-constants";
 
 export class DeletedCalendarCredentialsOutputDto {
   @IsInt()

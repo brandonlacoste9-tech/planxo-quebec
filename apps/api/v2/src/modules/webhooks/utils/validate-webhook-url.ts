@@ -1,5 +1,5 @@
-import { validateUrlForSSRFSync } from "@calcom/platform-libraries";
 import { BadRequestException } from "@nestjs/common";
+import { validateUrlForSSRFSync } from "@calcom/platform-libraries";
 
 export function validateWebhookUrl(subscriberUrl: string): void {
   const validation = validateUrlForSSRFSync(subscriberUrl);

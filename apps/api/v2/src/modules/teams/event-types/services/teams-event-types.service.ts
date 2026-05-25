@@ -1,8 +1,8 @@
-import { DatabaseTeamEventType } from "@/modules/teams/event-types/services/output-team-event-types.service";
 import { EventTypesRepository_2024_06_14 } from "@/platform/event-types/event-types_2024_06_14/event-types.repository";
 import { EventTypesService_2024_06_14 } from "@/platform/event-types/event-types_2024_06_14/services/event-types.service";
 import { InputEventTypesService_2024_06_14 } from "@/platform/event-types/event-types_2024_06_14/services/input-event-types.service";
 import type { CustomField, SystemField } from "@/platform/event-types/event-types_2024_06_14/transformers";
+import { DatabaseTeamEventType } from "@/modules/teams/event-types/services/output-team-event-types.service";
 
 type BaseTransformedEventType = ReturnType<
   InstanceType<typeof InputEventTypesService_2024_06_14>["transformInputCreateEventType"]
@@ -61,7 +61,7 @@ export class TeamsEventTypesService {
       input: { teamId: teamId, ...rest },
       ctx: {
         user: eventTypeUser,
-        // @ts-expect-error - prisma type mismatch between PrismaClient versions
+        // @ts-ignore - prisma type mismatch between PrismaClient versions
         prisma: this.dbWrite.prisma,
       },
     });
@@ -144,7 +144,7 @@ export class TeamsEventTypesService {
       },
       ctx: {
         user: eventTypeUser,
-        // @ts-expect-error - prisma type mismatch between PrismaClient versions
+        // @ts-ignore - prisma type mismatch between PrismaClient versions
         prisma: this.dbWrite.prisma,
       },
     });

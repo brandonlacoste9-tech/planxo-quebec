@@ -1,5 +1,3 @@
-import { Module } from "@nestjs/common";
-import { PassportModule } from "@nestjs/passport";
 import { ApiKeysModule } from "@/modules/api-keys/api-keys.module";
 import { ApiAuthGuard } from "@/modules/auth/guards/api-auth/api-auth.guard";
 import { NextAuthGuard } from "@/modules/auth/guards/next-auth/next-auth.guard";
@@ -11,6 +9,8 @@ import { OAuthFlowService } from "@/modules/oauth-clients/services/oauth-flow.se
 import { RedisModule } from "@/modules/redis/redis.module";
 import { TokensModule } from "@/modules/tokens/tokens.module";
 import { UsersModule } from "@/modules/users/users.module";
+import { Module } from "@nestjs/common";
+import { PassportModule } from "@nestjs/passport";
 
 @Module({
   imports: [

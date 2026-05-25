@@ -1,6 +1,9 @@
 import { CreationSource, createNewUsersConnectToOrgIfExists, slugify } from "@calcom/platform-libraries";
 import type { PlatformOAuthClient, User } from "@calcom/prisma/client";
 import { BadRequestException, ConflictException, Injectable, Logger } from "@nestjs/common";
+import { CalendarsService } from "@/platform/calendars/services/calendars.service";
+import { EventTypesService_2024_04_15 } from "@/platform/event-types/event-types_2024_04_15/services/event-types.service";
+import { SchedulesService_2024_04_15 } from "@/platform/schedules/schedules_2024_04_15/services/schedules.service";
 import { Locales } from "@/lib/enums/locales";
 import { GetManagedUsersInput } from "@/modules/oauth-clients/controllers/oauth-client-users/inputs/get-managed-users.input";
 import { ProfilesRepository } from "@/modules/profiles/profiles.repository";
@@ -8,9 +11,6 @@ import { TokensRepository } from "@/modules/tokens/tokens.repository";
 import { CreateManagedUserInput } from "@/modules/users/inputs/create-managed-user.input";
 import { UpdateManagedUserInput } from "@/modules/users/inputs/update-managed-user.input";
 import { UsersRepository } from "@/modules/users/users.repository";
-import { CalendarsService } from "@/platform/calendars/services/calendars.service";
-import { EventTypesService_2024_04_15 } from "@/platform/event-types/event-types_2024_04_15/services/event-types.service";
-import { SchedulesService_2024_04_15 } from "@/platform/schedules/schedules_2024_04_15/services/schedules.service";
 
 @Injectable()
 export class OAuthClientUsersService {

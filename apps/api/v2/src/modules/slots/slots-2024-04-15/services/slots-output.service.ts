@@ -1,7 +1,8 @@
-import { SlotFormat } from "@calcom/platform-enums";
-import { BadRequestException, Injectable } from "@nestjs/common";
-import { DateTime } from "luxon";
 import { EventTypesRepository_2024_04_15 } from "@/platform/event-types/event-types_2024_04_15/event-types.repository";
+import { Injectable, BadRequestException } from "@nestjs/common";
+import { DateTime } from "luxon";
+
+import { SlotFormat } from "@calcom/platform-enums";
 
 export type TimeSlots = {
   slots: Record<string, { time: string; attendees?: number; bookingUid?: string }[]>;
@@ -30,34 +31,28 @@ export class SlotsOutputService_2024_04_15 {
   }
 
   private setTimeZone(slots: TimeSlots, timeZone: string): TimeSlots {
-    const formattedSlots = Object.entries(slots.slots).reduce(
-      (acc, [date, daySlots]) => {
-        acc[date] = daySlots.map((slot) => ({
-          time: DateTime.fromISO(slot.time).setZone(timeZone).toISO() || "unknown-time",
-          ...(slot.attendees ? { attendees: slot.attendees } : {}),
-          ...(slot.bookingUid ? { bookingUid: slot.bookingUid } : {}),
-        }));
-        return acc;
-      },
-      {} as Record<string, { time: string }[]>
-    );
+    const formattedSlots = Object.entries(slots.slots).reduce((acc, [date, daySlots]) => {
+      acc[date] = daySlots.map((slot) => ({
+        time: DateTime.fromISO(slot.time).setZone(timeZone).toISO() || "unknown-time",
+        ...(slot.attendees ? { attendees: slot.attendees } : {}),
+        ...(slot.bookingUid ? { bookingUid: slot.bookingUid } : {}),
+      }));
+      return acc;
+    }, {} as Record<string, { time: string }[]>);
 
     return { slots: formattedSlots };
   }
 
   private setTimeZoneRange(slots: RangeSlots, timeZone: string): RangeSlots {
-    const formattedSlots = Object.entries(slots.slots).reduce(
-      (acc, [date, daySlots]) => {
-        acc[date] = daySlots.map((slot) => ({
-          startTime: DateTime.fromISO(slot.startTime).setZone(timeZone).toISO() || "unknown-start-time",
-          endTime: DateTime.fromISO(slot.endTime).setZone(timeZone).toISO() || "unknown-end-time",
-          ...(slot.attendees ? { attendees: slot.attendees } : {}),
-          ...(slot.bookingUid ? { bookingUid: slot.bookingUid } : {}),
-        }));
-        return acc;
-      },
-      {} as Record<string, { startTime: string; endTime: string }[]>
-    );
+    const formattedSlots = Object.entries(slots.slots).reduce((acc, [date, daySlots]) => {
+      acc[date] = daySlots.map((slot) => ({
+        startTime: DateTime.fromISO(slot.startTime).setZone(timeZone).toISO() || "unknown-start-time",
+        endTime: DateTime.fromISO(slot.endTime).setZone(timeZone).toISO() || "unknown-end-time",
+        ...(slot.attendees ? { attendees: slot.attendees } : {}),
+        ...(slot.bookingUid ? { bookingUid: slot.bookingUid } : {}),
+      }));
+      return acc;
+    }, {} as Record<string, { startTime: string; endTime: string }[]>);
 
     return { slots: formattedSlots };
   }

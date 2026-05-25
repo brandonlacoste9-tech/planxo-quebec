@@ -1,18 +1,19 @@
-import { ERROR_STATUS, SUCCESS_STATUS } from "@calcom/platform-constants";
 import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 import { Type } from "class-transformer";
 import {
-  IsArray,
-  IsDateString,
-  IsEmail,
+  IsString,
   IsEnum,
   IsInt,
-  IsObject,
   IsOptional,
-  IsString,
-  IsUrl,
+  IsObject,
   ValidateNested,
+  IsArray,
+  IsUrl,
+  IsDateString,
+  IsEmail,
 } from "class-validator";
+
+import { SUCCESS_STATUS, ERROR_STATUS } from "@calcom/platform-constants";
 
 class Metadata {
   @IsUrl()

@@ -1,5 +1,8 @@
-import { Global, Module } from "@nestjs/common";
-import { JwtService } from "@nestjs/jwt";
+import { CalendarsRepository } from "@/platform/calendars/calendars.repository";
+import { CalendarsCacheService } from "@/platform/calendars/services/calendars-cache.service";
+import { CalendarsService } from "@/platform/calendars/services/calendars.service";
+import { EventTypesModule_2024_04_15 } from "@/platform/event-types/event-types_2024_04_15/event-types.module";
+import { SchedulesModule_2024_04_15 } from "@/platform/schedules/schedules_2024_04_15/schedules.module";
 import { AppsRepository } from "@/modules/apps/apps.repository";
 import { AuthModule } from "@/modules/auth/auth.module";
 import { CredentialsRepository } from "@/modules/credentials/credentials.repository";
@@ -8,11 +11,11 @@ import { OAuthClientUsersController } from "@/modules/oauth-clients/controllers/
 import { OAuthClientsController } from "@/modules/oauth-clients/controllers/oauth-clients/oauth-clients.controller";
 import { OAuthFlowController } from "@/modules/oauth-clients/controllers/oauth-flow/oauth-flow.controller";
 import { OAuthClientRepository } from "@/modules/oauth-clients/oauth-client.repository";
-import { OAuthClientsService } from "@/modules/oauth-clients/services/oauth-clients/oauth-clients.service";
+import { OAuthClientUsersOutputService } from "@/modules/oauth-clients/services/oauth-clients-users-output.service";
+import { OAuthClientUsersService } from "@/modules/oauth-clients/services/oauth-clients-users.service";
 import { OAuthClientsInputService } from "@/modules/oauth-clients/services/oauth-clients/oauth-clients-input.service";
 import { OAuthClientsOutputService } from "@/modules/oauth-clients/services/oauth-clients/oauth-clients-output.service";
-import { OAuthClientUsersService } from "@/modules/oauth-clients/services/oauth-clients-users.service";
-import { OAuthClientUsersOutputService } from "@/modules/oauth-clients/services/oauth-clients-users-output.service";
+import { OAuthClientsService } from "@/modules/oauth-clients/services/oauth-clients/oauth-clients.service";
 import { OAuthFlowService } from "@/modules/oauth-clients/services/oauth-flow.service";
 import { OrganizationsModule } from "@/modules/organizations/organizations.module";
 import { PrismaModule } from "@/modules/prisma/prisma.module";
@@ -23,11 +26,8 @@ import { StripeModule } from "@/modules/stripe/stripe.module";
 import { TokensModule } from "@/modules/tokens/tokens.module";
 import { TokensRepository } from "@/modules/tokens/tokens.repository";
 import { UsersModule } from "@/modules/users/users.module";
-import { CalendarsRepository } from "@/platform/calendars/calendars.repository";
-import { CalendarsService } from "@/platform/calendars/services/calendars.service";
-import { CalendarsCacheService } from "@/platform/calendars/services/calendars-cache.service";
-import { EventTypesModule_2024_04_15 } from "@/platform/event-types/event-types_2024_04_15/event-types.module";
-import { SchedulesModule_2024_04_15 } from "@/platform/schedules/schedules_2024_04_15/schedules.module";
+import { Global, Module } from "@nestjs/common";
+import { JwtService } from "@nestjs/jwt";
 
 @Global()
 @Module({

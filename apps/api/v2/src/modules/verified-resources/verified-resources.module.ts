@@ -1,4 +1,3 @@
-import { Module } from "@nestjs/common";
 import { AppsRepository } from "@/modules/apps/apps.repository";
 import { CredentialsRepository } from "@/modules/credentials/credentials.repository";
 import { MembershipsRepository } from "@/modules/memberships/memberships.repository";
@@ -11,10 +10,13 @@ import { UserVerifiedResourcesController } from "@/modules/verified-resources/co
 import { VerifiedResourcesService } from "@/modules/verified-resources/services/verified-resources.service";
 import { TeamsVerifiedResourcesRepository } from "@/modules/verified-resources/teams-verified-resources.repository";
 import { UsersVerifiedResourcesRepository } from "@/modules/verified-resources/users-verified-resources.repository";
+import { Module } from "@nestjs/common";
 
 @Module({
   imports: [PrismaModule, RedisModule],
-  controllers: [UserVerifiedResourcesController],
+  controllers: [
+    UserVerifiedResourcesController,
+  ],
   providers: [
     VerifiedResourcesService,
     UsersVerifiedResourcesRepository,

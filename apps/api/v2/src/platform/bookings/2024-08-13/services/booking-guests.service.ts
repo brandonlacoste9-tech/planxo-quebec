@@ -1,10 +1,11 @@
-import { addGuestsHandler } from "@calcom/platform-libraries/bookings";
-import type { AddGuestsInput_2024_08_13 } from "@calcom/platform-types";
-import { BadRequestException, HttpException, Injectable, Logger, NotFoundException } from "@nestjs/common";
-import { ApiAuthGuardUser } from "@/modules/auth/strategies/api-auth/api-auth.strategy";
 import { BookingsRepository_2024_08_13 } from "@/platform/bookings/2024-08-13/repositories/bookings.repository";
 import { BookingsService_2024_08_13 } from "@/platform/bookings/2024-08-13/services/bookings.service";
 import { PlatformBookingsService } from "@/platform/bookings/shared/platform-bookings.service";
+import { ApiAuthGuardUser } from "@/modules/auth/strategies/api-auth/api-auth.strategy";
+import { Injectable, Logger, HttpException, NotFoundException, BadRequestException } from "@nestjs/common";
+
+import { addGuestsHandler } from "@calcom/platform-libraries/bookings";
+import type { AddGuestsInput_2024_08_13 } from "@calcom/platform-types";
 
 const MAX_TOTAL_GUESTS_PER_BOOKING = 30;
 
@@ -51,7 +52,10 @@ export class BookingGuestsService_2024_08_13 {
     if (res.message === "Guests added") {
       return await this.bookingsService.getBooking(bookingUid, user);
     } else {
-      throw new HttpException("Failed to add guests to the booking", 500);
+      throw new HttpException(
+        "Failed to add guests to the booking",
+        500
+      );
     }
   }
 }

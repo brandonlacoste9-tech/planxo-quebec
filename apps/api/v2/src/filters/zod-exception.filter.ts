@@ -1,11 +1,12 @@
-import { BAD_REQUEST, ERROR_STATUS } from "@calcom/platform-constants";
-import { Response } from "@calcom/platform-types";
+import { extractUserContext } from "@/lib/extract-user-context";
+import { filterReqHeaders } from "@/lib/filterReqHeaders";
 import type { ArgumentsHost, ExceptionFilter } from "@nestjs/common";
 import { Catch, HttpStatus, Logger } from "@nestjs/common";
 import { Request } from "express";
 import { ZodError } from "zod";
-import { extractUserContext } from "@/lib/extract-user-context";
-import { filterReqHeaders } from "@/lib/filterReqHeaders";
+
+import { BAD_REQUEST, ERROR_STATUS } from "@calcom/platform-constants";
+import { Response } from "@calcom/platform-types";
 
 @Catch(ZodError)
 export class ZodExceptionFilter implements ExceptionFilter {

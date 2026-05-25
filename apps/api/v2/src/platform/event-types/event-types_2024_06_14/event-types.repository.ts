@@ -1,9 +1,9 @@
 import type { SortOrderType } from "@calcom/platform-types";
 import type { Prisma } from "@calcom/prisma/client";
 import { Injectable } from "@nestjs/common";
+import { InputEventTransformed_2024_06_14 } from "@/platform/event-types/event-types_2024_06_14/transformed";
 import { PrismaReadService } from "@/modules/prisma/prisma-read.service";
 import { PrismaWriteService } from "@/modules/prisma/prisma-write.service";
-import { InputEventTransformed_2024_06_14 } from "@/platform/event-types/event-types_2024_06_14/transformed";
 
 @Injectable()
 export class EventTypesRepository_2024_06_14 {

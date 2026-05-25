@@ -1,8 +1,7 @@
-import { BOOKING_WRITE, SUCCESS_STATUS } from "@calcom/platform-constants";
-import { AddGuestsInput_2024_08_13 } from "@calcom/platform-types";
-import { Body, Controller, HttpCode, HttpStatus, Logger, Param, Post, UseGuards } from "@nestjs/common";
-import { ApiHeader, ApiOperation, ApiTags as DocsTags } from "@nestjs/swagger";
-import { VERSION_2024_08_13, VERSION_2024_08_13_VALUE } from "@/lib/api-versions";
+import { BookingUidGuard } from "@/platform/bookings/2024-08-13/guards/booking-uid.guard";
+import { AddGuestsOutput_2024_08_13 } from "@/platform/bookings/2024-08-13/outputs/add-guests.output";
+import { BookingGuestsService_2024_08_13 } from "@/platform/bookings/2024-08-13/services/booking-guests.service";
+import { VERSION_2024_08_13_VALUE, VERSION_2024_08_13 } from "@/lib/api-versions";
 import { API_KEY_OR_ACCESS_TOKEN_HEADER } from "@/lib/docs/headers";
 import { Throttle } from "@/lib/endpoint-throttler-decorator";
 import { GetUser } from "@/modules/auth/decorators/get-user/get-user.decorator";
@@ -10,9 +9,11 @@ import { Permissions } from "@/modules/auth/decorators/permissions/permissions.d
 import { ApiAuthGuard } from "@/modules/auth/guards/api-auth/api-auth.guard";
 import { PermissionsGuard } from "@/modules/auth/guards/permissions/permissions.guard";
 import { ApiAuthGuardUser } from "@/modules/auth/strategies/api-auth/api-auth.strategy";
-import { BookingUidGuard } from "@/platform/bookings/2024-08-13/guards/booking-uid.guard";
-import { AddGuestsOutput_2024_08_13 } from "@/platform/bookings/2024-08-13/outputs/add-guests.output";
-import { BookingGuestsService_2024_08_13 } from "@/platform/bookings/2024-08-13/services/booking-guests.service";
+import { Controller, Post, Logger, Body, UseGuards, Param, HttpCode, HttpStatus } from "@nestjs/common";
+import { ApiOperation, ApiTags as DocsTags, ApiHeader } from "@nestjs/swagger";
+
+import { BOOKING_WRITE, SUCCESS_STATUS } from "@calcom/platform-constants";
+import { AddGuestsInput_2024_08_13 } from "@calcom/platform-types";
 
 @Controller({
   path: "/v2/bookings/:bookingUid/guests",
