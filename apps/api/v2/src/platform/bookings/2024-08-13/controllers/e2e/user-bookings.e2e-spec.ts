@@ -35,9 +35,6 @@ import { randomString } from "test/utils/randomString";
 import { withApiAuth } from "test/utils/withApiAuth";
 import { AppModule } from "@/app.module";
 import { bootstrap } from "@/bootstrap";
-import { PermissionsGuard } from "@/modules/auth/guards/permissions/permissions.guard";
-import { PrismaModule } from "@/modules/prisma/prisma.module";
-import { UsersModule } from "@/modules/users/users.module";
 import { CancelBookingOutput_2024_08_13 } from "@/platform/bookings/2024-08-13/outputs/cancel-booking.output";
 import { CreateBookingOutput_2024_08_13 } from "@/platform/bookings/2024-08-13/outputs/create-booking.output";
 import { MarkAbsentBookingOutput_2024_08_13 } from "@/platform/bookings/2024-08-13/outputs/mark-absent.output";
@@ -47,6 +44,9 @@ import { CreateEventTypeOutput_2024_06_14 } from "@/platform/event-types/event-t
 import { CreateScheduleInput_2024_04_15 } from "@/platform/schedules/schedules_2024_04_15/inputs/create-schedule.input";
 import { SchedulesModule_2024_04_15 } from "@/platform/schedules/schedules_2024_04_15/schedules.module";
 import { SchedulesService_2024_04_15 } from "@/platform/schedules/schedules_2024_04_15/services/schedules.service";
+import { PermissionsGuard } from "@/modules/auth/guards/permissions/permissions.guard";
+import { PrismaModule } from "@/modules/prisma/prisma.module";
+import { UsersModule } from "@/modules/users/users.module";
 
 describe("Bookings Endpoints 2024-08-13", () => {
   describe("User bookings", () => {
@@ -428,7 +428,7 @@ describe("Bookings Endpoints 2024-08-13", () => {
               expect(updatedAtDate?.getTime()).toBeGreaterThanOrEqual(beforeCreate.getTime());
               expect(updatedAtDate?.getTime()).toBeLessThanOrEqual(afterCreate.getTime());
 
-              expect(data.metadata).toEqual({ ...body.metadata, platformClientId: oAuthClient.id });
+              expect(data.metadata).toEqual({...body.metadata, platformClientId: oAuthClient.id});
               createdBooking = data;
             } else {
               throw new Error(
@@ -2028,7 +2028,7 @@ describe("Bookings Endpoints 2024-08-13", () => {
               expect(updatedAtDate?.getTime()).toBeGreaterThanOrEqual(beforeCreate.getTime());
               expect(updatedAtDate?.getTime()).toBeLessThanOrEqual(afterCreate.getTime());
 
-              expect(data.metadata).toEqual({ ...body.metadata, platformClientId: oAuthClient.id });
+              expect(data.metadata).toEqual({...body.metadata, platformClientId: oAuthClient.id});
               createdBooking = data;
             } else {
               throw new Error(
@@ -2502,7 +2502,9 @@ describe("Bookings Endpoints 2024-08-13", () => {
         jest
           .spyOn(eventManagerProto, "createAllCalendarEvents")
           .mockImplementation(() => Promise.resolve([]));
-        jest.spyOn(eventManagerProto, "createAllCRMEvents").mockImplementation(() => Promise.resolve([]));
+        jest
+          .spyOn(eventManagerProto, "createAllCRMEvents")
+          .mockImplementation(() => Promise.resolve([]));
       });
 
       describe("platform oAuth client has calendar events enabled", () => {

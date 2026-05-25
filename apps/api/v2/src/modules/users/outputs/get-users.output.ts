@@ -1,14 +1,15 @@
 import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
-import { Expose, Transform, Type } from "class-transformer";
+import { Transform, Type } from "class-transformer";
+import { Expose } from "class-transformer";
 import {
-  IsArray,
   IsBoolean,
   IsDateString,
   IsInt,
-  IsObject,
-  IsOptional,
   IsString,
   ValidateNested,
+  IsArray,
+  IsObject,
+  IsOptional,
 } from "class-validator";
 
 export class GetUserOutput {

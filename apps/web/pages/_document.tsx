@@ -50,8 +50,10 @@ class MyDocument extends Document<Props> {
         lang={newLocale}
         dir={newDir}
         style={embedColorScheme ? { colorScheme: embedColorScheme as string } : undefined}>
-        <Head>
-          <script
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="mobile-web-app-capable" content="yes" />
             id="newLocale"
             // eslint-disable-next-line react/no-danger
             // biome-ignore lint/security/noDangerouslySetInnerHtml: Setting locale and theme requires inline script

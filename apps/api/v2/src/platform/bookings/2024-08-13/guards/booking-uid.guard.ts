@@ -1,4 +1,4 @@
-import { BadRequestException, CanActivate, ExecutionContext, Injectable } from "@nestjs/common";
+import { Injectable, CanActivate, ExecutionContext, BadRequestException } from "@nestjs/common";
 
 @Injectable()
 export class BookingUidGuard implements CanActivate {

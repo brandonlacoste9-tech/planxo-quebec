@@ -1,4 +1,6 @@
 import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
+import { CalendarsService } from "@/platform/calendars/services/calendars.service";
+import { CalendarsCacheService } from "@/platform/calendars/services/calendars-cache.service";
 import {
   SelectedCalendarsInputDto,
   SelectedCalendarsQueryParamsInputDto,
@@ -9,8 +11,6 @@ import {
   SelectedCalendarsRepository,
 } from "@/modules/selected-calendars/selected-calendars.repository";
 import { UserWithProfile } from "@/modules/users/users.repository";
-import { CalendarsService } from "@/platform/calendars/services/calendars.service";
-import { CalendarsCacheService } from "@/platform/calendars/services/calendars-cache.service";
 
 @Injectable()
 export class SelectedCalendarsService {

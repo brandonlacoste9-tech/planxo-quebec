@@ -1,9 +1,5 @@
 import type { BookingWithUserAndEventDetails, CalendarEvent } from "@calcom/platform-libraries";
-import {
-  buildCalEventFromBooking,
-  sendLocationChangeEmailsAndSMS,
-  updateEvent,
-} from "@calcom/platform-libraries";
+import { buildCalEventFromBooking, sendLocationChangeEmailsAndSMS, updateEvent } from "@calcom/platform-libraries";
 import { Injectable, Logger } from "@nestjs/common";
 import { BookingsRepository_2024_08_13 } from "@/platform/bookings/2024-08-13/repositories/bookings.repository";
 import { BookingLocationCredentialService_2024_08_13 } from "@/platform/bookings/2024-08-13/services/booking-location-credential.service";
@@ -103,10 +99,7 @@ export class BookingLocationCalendarSyncService_2024_08_13 {
     const evt = await this.buildCalEventFromBookingData(booking, newLocation, null);
 
     for (const reference of calendarReferences) {
-      const credential = await this.credentialService.getCredentialForReference(
-        reference,
-        booking.user.credentials
-      );
+      const credential = await this.credentialService.getCredentialForReference(reference, booking.user.credentials);
 
       if (!credential) {
         this.logger.warn(

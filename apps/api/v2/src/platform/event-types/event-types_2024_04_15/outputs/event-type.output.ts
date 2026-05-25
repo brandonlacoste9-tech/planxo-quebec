@@ -1,17 +1,3 @@
-import { ApiHideProperty, ApiProperty } from "@nestjs/swagger";
-import { Type } from "class-transformer";
-import {
-  IsArray,
-  IsBoolean,
-  IsDate,
-  IsEnum,
-  IsInt,
-  IsJSON,
-  IsNumber,
-  IsOptional,
-  IsString,
-  ValidateNested,
-} from "class-validator";
 import {
   CREATE_EVENT_DESCRIPTION_EXAMPLE,
   CREATE_EVENT_LENGTH_EXAMPLE,
@@ -26,6 +12,20 @@ import {
   IntervalLimits_2024_04_15,
   RecurringEvent_2024_04_15,
 } from "@/platform/event-types/event-types_2024_04_15/inputs/update-event-type.input";
+import { ApiHideProperty, ApiProperty } from "@nestjs/swagger";
+import { Type } from "class-transformer";
+import {
+  IsArray,
+  IsBoolean,
+  IsDate,
+  IsEnum,
+  IsInt,
+  IsJSON,
+  IsNumber,
+  IsOptional,
+  IsString,
+  ValidateNested,
+} from "class-validator";
 
 export class EventTypeOutput {
   @IsInt()

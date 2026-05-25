@@ -8,6 +8,7 @@ import {
 } from "@calcom/platform-constants";
 import type { ConnectedDestinationCalendars } from "@calcom/platform-libraries";
 import { BadRequestException, Injectable } from "@nestjs/common";
+import { CalendarsService } from "@/platform/calendars/services/calendars.service";
 import type { CreateUnifiedCalendarEventInput } from "@/modules/cal-unified-calendars/inputs/create-unified-calendar-event.input";
 import type { UpdateUnifiedCalendarEventInput } from "@/modules/cal-unified-calendars/inputs/update-unified-calendar-event.input";
 import {
@@ -16,7 +17,6 @@ import {
 } from "@/modules/cal-unified-calendars/pipes/get-calendar-event-details-output-pipe";
 import { GoogleCalendarService } from "@/modules/cal-unified-calendars/services/google-calendar.service";
 import { UnifiedCalendarsFreebusyService } from "@/modules/cal-unified-calendars/services/unified-calendars-freebusy.service";
-import { CalendarsService } from "@/platform/calendars/services/calendars.service";
 
 type ConnectedCalendarsList = ConnectedDestinationCalendars["connectedCalendars"];
 
@@ -110,12 +110,7 @@ export class UnifiedCalendarService {
     return this.transformEvents(events);
   }
 
-  async createEvent(
-    calendar: string,
-    userId: number,
-    calendarId: string,
-    body: CreateUnifiedCalendarEventInput
-  ) {
+  async createEvent(calendar: string, userId: number, calendarId: string, body: CreateUnifiedCalendarEventInput) {
     this.ensureGoogleCalendar(calendar, "Create event");
     const event = await this.googleCalendarService.createEventForUser(userId, calendarId, body);
     return this.transformEvent(event);
@@ -166,12 +161,7 @@ export class UnifiedCalendarService {
   }
 
   async getConnectionEvent(userId: number, credentialId: number, calendarId: string, eventId: string) {
-    const event = await this.googleCalendarService.getEventByConnectionId(
-      userId,
-      credentialId,
-      calendarId,
-      eventId
-    );
+    const event = await this.googleCalendarService.getEventByConnectionId(userId, credentialId, calendarId, eventId);
     return this.transformEvent(event);
   }
 
@@ -193,21 +183,10 @@ export class UnifiedCalendarService {
   }
 
   async deleteConnectionEvent(userId: number, credentialId: number, calendarId: string, eventId: string) {
-    await this.googleCalendarService.deleteEventForUserByConnectionId(
-      userId,
-      credentialId,
-      calendarId,
-      eventId
-    );
+    await this.googleCalendarService.deleteEventForUserByConnectionId(userId, credentialId, calendarId, eventId);
   }
 
-  async getConnectionFreeBusy(
-    userId: number,
-    credentialId: number,
-    from: string,
-    to: string,
-    timezone: string
-  ) {
+  async getConnectionFreeBusy(userId: number, credentialId: number, from: string, to: string, timezone: string) {
     return this.freebusyService.getBusyTimesForConnection(userId, credentialId, from, to, timezone);
   }
 }

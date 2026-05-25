@@ -1,7 +1,8 @@
-import { ERROR_STATUS, SUCCESS_STATUS } from "@calcom/platform-constants";
 import { ApiProperty } from "@nestjs/swagger";
 import { Expose, Type } from "class-transformer";
-import { IsEnum, IsInt, IsString, ValidateNested } from "class-validator";
+import { IsInt, IsString, ValidateNested, IsEnum } from "class-validator";
+
+import { ERROR_STATUS, SUCCESS_STATUS } from "@calcom/platform-constants";
 
 export class SelectedCalendarOutputDto {
   @IsInt()

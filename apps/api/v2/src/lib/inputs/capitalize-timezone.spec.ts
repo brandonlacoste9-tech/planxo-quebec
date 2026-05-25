@@ -1,5 +1,6 @@
 import { plainToClass } from "class-transformer";
 import { IsOptional, IsString } from "class-validator";
+
 import { CapitalizeTimeZone } from "./capitalize-timezone";
 
 class TestDto {

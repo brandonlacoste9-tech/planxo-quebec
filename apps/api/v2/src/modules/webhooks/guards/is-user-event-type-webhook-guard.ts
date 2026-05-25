@@ -1,4 +1,6 @@
-import type { EventType, Webhook } from "@calcom/prisma/client";
+import { EventTypesRepository_2024_06_14 } from "@/platform/event-types/event-types_2024_06_14/event-types.repository";
+import { ApiAuthGuardUser } from "@/modules/auth/strategies/api-auth/api-auth.strategy";
+import { WebhooksService } from "@/modules/webhooks/services/webhooks.service";
 import {
   BadRequestException,
   CanActivate,
@@ -8,9 +10,8 @@ import {
   NotFoundException,
 } from "@nestjs/common";
 import { Request } from "express";
-import { ApiAuthGuardUser } from "@/modules/auth/strategies/api-auth/api-auth.strategy";
-import { WebhooksService } from "@/modules/webhooks/services/webhooks.service";
-import { EventTypesRepository_2024_06_14 } from "@/platform/event-types/event-types_2024_06_14/event-types.repository";
+
+import type { EventType, Webhook } from "@calcom/prisma/client";
 
 @Injectable()
 export class IsUserEventTypeWebhookGuard implements CanActivate {

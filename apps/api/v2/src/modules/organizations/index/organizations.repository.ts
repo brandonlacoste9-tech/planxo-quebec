@@ -31,6 +31,7 @@ export class OrganizationsRepository {
     });
   }
 
+
   async findTeamIdAndSlugFromClientId(clientId: string) {
     return this.dbRead.prisma.team.findFirstOrThrow({
       where: {
@@ -136,4 +137,5 @@ export class OrganizationsRepository {
       },
     });
   }
+
 }

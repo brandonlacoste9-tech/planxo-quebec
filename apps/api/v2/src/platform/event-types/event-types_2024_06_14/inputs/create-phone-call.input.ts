@@ -1,6 +1,6 @@
-import { ApiPropertyOptional, ApiProperty as DocsProperty } from "@nestjs/swagger";
+import { ApiProperty as DocsProperty, ApiPropertyOptional } from "@nestjs/swagger";
 import { Transform } from "class-transformer";
-import { IsBoolean, IsEnum, IsOptional, IsString, Matches } from "class-validator";
+import { IsString, IsBoolean, IsOptional, IsEnum, Matches } from "class-validator";
 
 export enum TemplateType {
   CHECK_IN_APPOINTMENT = "CHECK_IN_APPOINTMENT",

@@ -1,4 +1,10 @@
 import { Module } from "@nestjs/common";
+import { EventTypesModule_2024_06_14 } from "@/platform/event-types/event-types_2024_06_14/event-types.module";
+import { EventTypeWebhooksController } from "@/modules/event-types/controllers/event-types-webhooks.controller";
+import { OAuthClientWebhooksController } from "@/modules/oauth-clients/controllers/oauth-client-webhooks/oauth-client-webhooks.controller";
+import { OAuthClientModule } from "@/modules/oauth-clients/oauth-client.module";
+import { TeamsEventTypesRepository } from "@/modules/teams/event-types/teams-event-types.repository";
+
 import { MembershipsModule } from "../memberships/memberships.module";
 import { PrismaModule } from "../prisma/prisma.module";
 import { UsersModule } from "../users/users.module";
@@ -9,12 +15,7 @@ import { TeamEventTypeWebhooksService } from "./services/team-event-type-webhook
 import { UserWebhooksService } from "./services/user-webhooks.service";
 import { WebhooksService } from "./services/webhooks.service";
 import { WebhooksRepository } from "./webhooks.repository";
-import { EventTypeWebhooksController } from "@/modules/event-types/controllers/event-types-webhooks.controller";
-import { OAuthClientWebhooksController } from "@/modules/oauth-clients/controllers/oauth-client-webhooks/oauth-client-webhooks.controller";
-import { OAuthClientModule } from "@/modules/oauth-clients/oauth-client.module";
 import { RedisModule } from "@/modules/redis/redis.module";
-import { TeamsEventTypesRepository } from "@/modules/teams/event-types/teams-event-types.repository";
-import { EventTypesModule_2024_06_14 } from "@/platform/event-types/event-types_2024_06_14/event-types.module";
 
 @Module({
   imports: [
@@ -26,7 +27,11 @@ import { EventTypesModule_2024_06_14 } from "@/platform/event-types/event-types_
     MembershipsModule,
     OAuthClientModule,
   ],
-  controllers: [WebhooksController, EventTypeWebhooksController, OAuthClientWebhooksController],
+  controllers: [
+    WebhooksController,
+    EventTypeWebhooksController,
+    OAuthClientWebhooksController,
+  ],
   providers: [
     TeamsEventTypesRepository,
     WebhooksService,

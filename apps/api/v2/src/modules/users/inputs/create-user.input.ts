@@ -1,4 +1,4 @@
-import { ValidateMetadata } from "@calcom/platform-types";
+import { CapitalizeTimeZone } from "@/lib/inputs/capitalize-timezone";
 import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 import { Expose, Transform } from "class-transformer";
 import {
@@ -6,19 +6,21 @@ import {
   IsEmail,
   IsHexColor,
   IsNumber,
-  IsObject,
   IsOptional,
   IsString,
-  Min,
   Validate,
+  Min,
+  IsObject,
 } from "class-validator";
+
+import { ValidateMetadata } from "@calcom/platform-types";
+
 import { AvatarValidator } from "../validators/avatarValidator";
 import { LocaleValidator } from "../validators/localeValidator";
 import { ThemeValidator } from "../validators/themeValidator";
 import { TimeFormatValidator } from "../validators/timeFormatValidator";
 import { TimeZoneValidator } from "../validators/timeZoneValidator";
 import { WeekdayValidator } from "../validators/weekdayValidator";
-import { CapitalizeTimeZone } from "@/lib/inputs/capitalize-timezone";
 
 export class CreateUserInput {
   @ApiProperty({ type: String, description: "User email address", example: "user@example.com" })

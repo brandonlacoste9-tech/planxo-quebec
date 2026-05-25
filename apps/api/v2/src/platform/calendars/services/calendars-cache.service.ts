@@ -1,6 +1,7 @@
-import type { getConnectedDestinationCalendarsAndEnsureDefaultsInDb } from "@calcom/platform-libraries";
-import { Injectable } from "@nestjs/common";
 import { RedisService } from "@/modules/redis/redis.service";
+import { Injectable } from "@nestjs/common";
+
+import type { getConnectedDestinationCalendarsAndEnsureDefaultsInDb } from "@calcom/platform-libraries";
 
 export const REDIS_CALENDARS_CACHE_KEY = (userId: number) => `apiv2:user:${userId}:calendars`;
 export const CALENDARS_CACHE_TTL_MS = 10_000;

@@ -1,21 +1,23 @@
-import {
-  OFFICE_365_CALENDAR,
-  OFFICE_365_CALENDAR_ID,
-  OFFICE_365_CALENDAR_TYPE,
-  SUCCESS_STATUS,
-} from "@calcom/platform-constants";
+import { OAuthCalendarApp } from "@/platform/calendars/calendars.interface";
+import { CalendarState } from "@/platform/calendars/controllers/calendars.controller";
+import { CalendarsService } from "@/platform/calendars/services/calendars.service";
+import { CredentialsRepository } from "@/modules/credentials/credentials.repository";
+import { SelectedCalendarsRepository } from "@/modules/selected-calendars/selected-calendars.repository";
+import { TokensService } from "@/modules/tokens/tokens.service";
 import type { Calendar as OfficeCalendar } from "@microsoft/microsoft-graph-types-beta";
-import { BadRequestException, Injectable, UnauthorizedException } from "@nestjs/common";
+import { BadRequestException, UnauthorizedException } from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { Request } from "express";
 import { stringify } from "querystring";
 import { z } from "zod";
-import { CredentialsRepository } from "@/modules/credentials/credentials.repository";
-import { SelectedCalendarsRepository } from "@/modules/selected-calendars/selected-calendars.repository";
-import { TokensService } from "@/modules/tokens/tokens.service";
-import { OAuthCalendarApp } from "@/platform/calendars/calendars.interface";
-import { CalendarState } from "@/platform/calendars/controllers/calendars.controller";
-import { CalendarsService } from "@/platform/calendars/services/calendars.service";
+
+import {
+  SUCCESS_STATUS,
+  OFFICE_365_CALENDAR,
+  OFFICE_365_CALENDAR_ID,
+  OFFICE_365_CALENDAR_TYPE,
+} from "@calcom/platform-constants";
 
 @Injectable()
 export class OutlookService implements OAuthCalendarApp {

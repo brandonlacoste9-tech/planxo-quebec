@@ -1,4 +1,4 @@
-import { clamp, getPagination } from "./pagination";
+import { getPagination, clamp } from "./pagination";
 
 describe("getPagination", () => {
   it("handles the first page correctly", () => {

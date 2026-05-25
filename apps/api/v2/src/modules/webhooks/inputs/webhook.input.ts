@@ -1,6 +1,7 @@
-import { WebhookTriggerEvents, WebhookVersion } from "@calcom/platform-libraries";
 import { ApiProperty, ApiPropertyOptional, PartialType } from "@nestjs/swagger";
 import { IsArray, IsBoolean, IsEnum, IsOptional, IsString } from "class-validator";
+
+import { WebhookTriggerEvents, WebhookVersion } from "@calcom/platform-libraries";
 
 export class CreateWebhookInputDto {
   @IsString()

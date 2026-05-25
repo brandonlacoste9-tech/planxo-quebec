@@ -1,4 +1,4 @@
-import { CanActivate, ExecutionContext, Injectable, Logger, Type } from "@nestjs/common";
+import { Injectable, CanActivate, ExecutionContext, Type, Logger } from "@nestjs/common";
 import { ModuleRef } from "@nestjs/core";
 
 /**

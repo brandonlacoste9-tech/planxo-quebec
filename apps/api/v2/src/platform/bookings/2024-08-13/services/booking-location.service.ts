@@ -10,9 +10,6 @@ import {
   Logger,
   NotFoundException,
 } from "@nestjs/common";
-import type { ApiAuthGuardUser } from "@/modules/auth/strategies/api-auth/api-auth.strategy";
-import { EventTypeAccessService } from "@/modules/event-types/services/event-type-access.service";
-import { UsersRepository } from "@/modules/users/users.repository";
 import { BookingsRepository_2024_08_13 } from "@/platform/bookings/2024-08-13/repositories/bookings.repository";
 import { BookingLocationCalendarSyncService_2024_08_13 } from "@/platform/bookings/2024-08-13/services/booking-location-calendar-sync.service";
 import {
@@ -24,6 +21,9 @@ import { BookingVideoService_2024_08_13 } from "@/platform/bookings/2024-08-13/s
 import { BookingsService_2024_08_13 } from "@/platform/bookings/2024-08-13/services/bookings.service";
 import { InputBookingsService_2024_08_13 } from "@/platform/bookings/2024-08-13/services/input.service";
 import { EventTypesRepository_2024_06_14 } from "@/platform/event-types/event-types_2024_06_14/event-types.repository";
+import type { ApiAuthGuardUser } from "@/modules/auth/strategies/api-auth/api-auth.strategy";
+import { EventTypeAccessService } from "@/modules/event-types/services/event-type-access.service";
+import { UsersRepository } from "@/modules/users/users.repository";
 
 @Injectable()
 export class BookingLocationService_2024_08_13 {
