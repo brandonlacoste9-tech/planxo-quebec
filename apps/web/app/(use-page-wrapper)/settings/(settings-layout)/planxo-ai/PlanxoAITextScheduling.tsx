@@ -70,7 +70,7 @@ export function PlanxoAITextScheduling() {
 
       <div className="grid gap-6 md:grid-cols-2">
         {/* Fetch Times Form */}
-        <div className="rounded-md border border-subtle bg-default p-6">
+        <div className="rounded-md border border-subtle bg-default p-4 sm:p-6">
           <Form
             form={{
               defaultValues: {
@@ -146,7 +146,7 @@ export function PlanxoAITextScheduling() {
 
         <div className="flex flex-col gap-6">
           {/* Booking Confirmation Form */}
-          <div className="rounded-md border border-subtle bg-default p-6">
+          <div className="rounded-md border border-subtle bg-default p-4 sm:p-6">
             <h3 className="mb-4 font-medium text-emphasis">Confirm booking by text</h3>
             <Form
               form={{
@@ -204,11 +204,11 @@ export function PlanxoAITextScheduling() {
           </div>
 
           {/* Session Log */}
-          <div className="flex flex-grow flex-col rounded-md border border-subtle bg-default p-6">
+          <div className="flex flex-grow flex-col rounded-md border border-subtle bg-default p-4 sm:p-6">
             <h3 className="mb-4 font-medium text-emphasis">Text session log</h3>
             <textarea
               readOnly
-              className="w-full flex-grow rounded-md border border-subtle bg-muted p-3 font-mono text-sm text-subtle outline-none"
+              className="min-w-0 w-full flex-grow rounded-md border border-subtle bg-muted p-3 font-mono text-sm text-subtle outline-none"
               value={logs}
               rows={8}
             />

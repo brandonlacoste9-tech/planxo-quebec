@@ -10,10 +10,10 @@ export default function PlanxoAIWidget({ agentId, hostName }: { agentId: string;
   }, [hostName]);
 
   return (
-    <>
+    <div className="fixed bottom-4 right-4 z-[9999] sm:bottom-6 sm:right-6 max-w-[calc(100vw-2rem)]">
       <Script src="https://elevenlabs.io/convai-widget/index.js" strategy="lazyOnload" />
       <elevenlabs-convai agent-id={agentId}></elevenlabs-convai>
-    </>
+    </div>
   );
 }
 
