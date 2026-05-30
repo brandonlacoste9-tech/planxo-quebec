@@ -12,7 +12,7 @@ const formSchema = z.object({
   elevenLabsAgentId: z.string().optional(),
 });
 
-import { PlanxoAITextDemo } from "./PlanxoAITextDemo";
+import { PlanxoAITextScheduling } from "./PlanxoAITextScheduling";
 
 export default function PlanxoAI() {
   const { t } = useLocale();
@@ -77,7 +77,7 @@ export default function PlanxoAI() {
         </Form>
       </div>
 
-      <PlanxoAITextDemo />
+      <PlanxoAITextScheduling />
     </div>
   );
 }

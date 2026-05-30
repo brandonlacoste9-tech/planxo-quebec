@@ -9,7 +9,7 @@ import { showToast } from "@calcom/ui/components/toast";
 import dayjs from "dayjs";
 import { useState } from "react";
 
-export function PlanxoAITextDemo() {
+export function PlanxoAITextScheduling() {
   const [params, setParams] = useState({
     username: "",
     eventSlug: "",
@@ -61,7 +61,7 @@ export function PlanxoAITextDemo() {
   return (
     <div className="mt-8 flex flex-col gap-6 border-subtle border-t pt-8">
       <div className="flex flex-col gap-2">
-        <h2 className="font-cal font-semibold text-xl leading-none">Planxo AI Text Scheduling Demo</h2>
+        <h2 className="font-cal font-semibold text-xl leading-none">Planxo AI Text Scheduling</h2>
         <p className="text-sm text-subtle">
           Try the same scheduling flow your users get in production, fully text-based and connected to real
           availability.
