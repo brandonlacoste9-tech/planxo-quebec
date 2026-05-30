@@ -6,11 +6,13 @@ import { z } from "zod";
 export type TUpdateUserMetadataAllowedKeys = {
   sessionTimeout?: number;
   defaultBookerLayouts?: z.infer<typeof bookerLayouts>;
+  elevenLabsAgentId?: string;
 };
 
 export const updateUserMetadataAllowedKeys: z.ZodType<TUpdateUserMetadataAllowedKeys> = z.object({
   sessionTimeout: z.number().optional(), // Minutes
   defaultBookerLayouts: bookerLayouts.optional(),
+  elevenLabsAgentId: z.string().optional(),
 });
 
 export type TUpdateProfileInputSchemaInput = {

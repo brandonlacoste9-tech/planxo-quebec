@@ -16,13 +16,17 @@ import { EventTypeDescriptionLazy as EventTypeDescription } from "@calcom/web/mo
 import EmptyPage from "@calcom/web/modules/event-types/components/EmptyPage";
 import type { getServerSideProps } from "@server/lib/[user]/getServerSideProps";
 import classNames from "classnames";
+import dynamic from "next/dynamic";
 import type { InferGetServerSidePropsType } from "next";
 import Link from "next/link";
 import { Toaster } from "sonner";
 
+// Lazy-load the ElevenLabs widget — it mounts a script tag and must run client-side only
+const PlanxoAIWidget = dynamic(() => import("../components/PlanxoAIWidget"), { ssr: false });
+
 export type PageProps = InferGetServerSidePropsType<typeof getServerSideProps>;
 export function UserPage(props: PageProps) {
-  const { users, profile, eventTypes, entity } = props;
+  const { users, profile, eventTypes, entity, elevenLabsAgentId } = props;
 
   const [user] = users; //To be used when we only have a single user, not dynamic group
   useTheme(profile.theme);
@@ -151,6 +155,10 @@ export function UserPage(props: PageProps) {
         </main>
         <Toaster position="bottom-right" />
       </div>
+      {/* Planxo AI voice assistant widget — only shown when the host has configured an ElevenLabs Agent ID */}
+      {elevenLabsAgentId && !isEmbed && (
+        <PlanxoAIWidget agentId={elevenLabsAgentId} hostName={profile.name || ""} />
+      )}
     </>
   );
 }

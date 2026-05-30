@@ -128,6 +128,18 @@ const getTabs = (
       ],
     },
     {
+      name: "Planxo AI",
+      href: "/settings/planxo-ai",
+      icon: "mic",
+      children: [
+        {
+          name: "planxo_ai_voice",
+          href: "/settings/planxo-ai",
+          trackingMetadata: { section: "planxo_ai", page: "voice_assistant" },
+        },
+      ],
+    },
+    {
       name: "organization",
       href: "/settings/organizations",
       children: [

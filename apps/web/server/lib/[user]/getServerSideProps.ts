@@ -13,6 +13,7 @@ import { prisma } from "@calcom/prisma";
 import type { EventType, User } from "@calcom/prisma/client";
 import { RedirectType } from "@calcom/prisma/enums";
 import type { EventTypeMetaDataSchema } from "@calcom/prisma/zod-utils";
+import { userMetadata } from "@calcom/prisma/zod-utils";
 import type { UserProfile } from "@calcom/types/UserProfile";
 import { handleOrgRedirect } from "@lib/handleOrgRedirect";
 import type { EmbedProps } from "app/WithEmbedSSR";
@@ -73,6 +74,8 @@ type UserPageProps = {
     | "schedulingType"
   >)[];
   isOrgSEOIndexable: boolean | undefined;
+  /** ElevenLabs Agent ID for the Planxo AI voice assistant widget. Only present when the host has configured it. */
+  elevenLabsAgentId: string | null;
 } & EmbedProps;
 
 export const getServerSideProps: GetServerSideProps<UserPageProps> = async (context) => {
@@ -184,6 +187,12 @@ export const getServerSideProps: GetServerSideProps<UserPageProps> = async (cont
   const markdownStrippedBio = stripMarkdown(user?.bio || "");
   const org = usersInOrgContext[0].profile.organization;
 
+  // Parse metadata safely to extract the ElevenLabs agent ID for the voice widget
+  const parsedMetadata = userMetadata.safeParse(user.metadata);
+  const elevenLabsAgentId = parsedMetadata.success
+    ? (parsedMetadata.data?.elevenLabsAgentId ?? null)
+    : null;
+
   return {
     props: {
       users: usersInOrgContext.map((user) => ({
@@ -207,6 +216,7 @@ export const getServerSideProps: GetServerSideProps<UserPageProps> = async (cont
       themeBasis: user.username,
       markdownStrippedBio,
       isOrgSEOIndexable: org?.organizationSettings?.allowSEOIndexing ?? false,
+      elevenLabsAgentId,
     },
   };
 };
